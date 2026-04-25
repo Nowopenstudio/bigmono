@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002F[countryCode]\u002Fcollections\u002F[handle]","\u002Fstudio\u002F[[...tool]]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
