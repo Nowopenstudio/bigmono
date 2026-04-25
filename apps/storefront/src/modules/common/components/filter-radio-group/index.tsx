@@ -1,5 +1,13 @@
 import { EllipseMiniSolid } from "@medusajs/icons"
 import { Label, RadioGroup, Text, clx } from "@medusajs/ui"
+import type { ComponentType, ReactNode } from "react"
+
+const SafeRadioGroup = RadioGroup as unknown as ComponentType<{
+  children?: ReactNode
+  className?: string
+  "data-testid"?: string
+  onValueChange?: (...args: any[]) => void
+}>
 
 type FilterRadioGroupProps = {
   title: string
@@ -23,7 +31,7 @@ const FilterRadioGroup = ({
    <div className="w-full border-b-[3px] border-black bg-[--yellow] flex justify-between items-center navHold">
     <div className="px-6">{title}</div>
       <div className="flex items-center w-auto flex-nowrap justify-end h-full">
-        <RadioGroup data-testid={dataTestId} onValueChange={handleChange} className="flex justify-center w-auto flex-nowrap h-full gap-0">
+        <SafeRadioGroup data-testid={dataTestId} onValueChange={handleChange} className="flex justify-center w-auto flex-nowrap h-full gap-0">
           {items?.map((i) => (
             <div
               key={i.value}
@@ -55,7 +63,7 @@ const FilterRadioGroup = ({
               </Label>
             </div>
           ))}
-        </RadioGroup>
+        </SafeRadioGroup>
       </div>
    </div>
   )
