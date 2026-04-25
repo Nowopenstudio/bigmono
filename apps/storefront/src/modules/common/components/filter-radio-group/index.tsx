@@ -55,7 +55,7 @@ const FilterRadioGroup = ({
               </Label>
             </div>
           ))}
-        </SafeRadioGroup>
+        </RadioGroup>
       </div>
    </div>
   )

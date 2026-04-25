@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "npm -r dev",
     "build": "npm -r build",
+    "postinstall": "node scripts/patch-opennext-manifest-loader.js",
     "start": "turbo start",
     "lint": "turbo lint",
     "test": "turbo test",
