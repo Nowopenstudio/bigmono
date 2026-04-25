@@ -20,6 +20,9 @@ coverage
 **/.next/
 **/out/
 
+**/node_modules
+**/.open-next
+
 # Production
 **/build
 **/dist
