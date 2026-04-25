@@ -1,6 +1,6 @@
 'use client'
 
-import { animate, useMotionValue, motion } from "framer-motion";
+import { animate, useMotionValue, motion } from "motion/react";
 
 import useMeasure from "react-use-measure";
 import { useEffect, useState } from "react";
