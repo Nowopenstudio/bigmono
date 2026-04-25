@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server"
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL
 const PUBLISHABLE_API_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
-const DEFAULT_REGION = process.env.NEXT_PUBLIC_DEFAULT_REGION || "dk"
+const DEFAULT_REGION = process.env.NEXT_PUBLIC_DEFAULT_REGION || "us"
 
 const regionMapCache = {
   regionMap: new Map<string, HttpTypes.StoreRegion>(),
@@ -15,7 +15,7 @@ async function getRegionMap(cacheId: string) {
 
   if (!BACKEND_URL) {
     throw new Error(
-      "Middleware.ts: Error fetching regions. Did you set up regions in your Medusa Admin and define a NEXT_PUBLIC_MEDUSA_BACKEND_URL environment variable."
+      "proxy.ts: Error fetching regions. Did you set up regions in your Medusa Admin and define a NEXT_PUBLIC_MEDUSA_BACKEND_URL environment variable."
     )
   }
 
@@ -23,7 +23,7 @@ async function getRegionMap(cacheId: string) {
     !regionMap.keys().next().value ||
     regionMapUpdated < Date.now() - 3600 * 1000
   ) {
-    // Fetch regions from Medusa. We can't use the JS client here because middleware is running on Edge and the client needs a Node environment.
+    // Fetch regions from Medusa. We can't use the JS client here because proxy runs on Edge and the client needs a Node environment.
     const response = await fetch(`${BACKEND_URL}/store/regions`, {
       method: "GET",
       headers: {
@@ -98,9 +98,9 @@ async function getCountryCode(
 }
 
 /**
- * Middleware to handle region selection and onboarding status.
+ * Proxy handler to route requests by detected region.
  */
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   if (request.nextUrl.pathname.includes(".")) {
     return NextResponse.next()
   }
@@ -116,7 +116,7 @@ export async function middleware(request: NextRequest) {
   const firstPathSegment = request.nextUrl.pathname.split("/")[1]?.toLowerCase()
   const urlHasCountry = firstPathSegment === country.toLowerCase()
 
-  if (urlHasCountry) {
+  if (request.nextUrl.pathname.startsWith("/studio") || urlHasCountry) {
     if (!cacheIdCookie) {
       const response = NextResponse.next()
       response.cookies.set("_medusa_cache_id", cacheId, {

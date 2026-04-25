@@ -47,10 +47,12 @@ const Payment = ({
   const setPaymentMethod = async (method: string) => {
     setError(null)
     setSelectedPaymentMethod(method)
+    setCardComplete(false)
     if (isStripeLike(method)) {
       await initiatePaymentSession(cart, {
         provider_id: method,
       })
+      router.refresh()
     }
   }
 
@@ -110,6 +112,32 @@ const Payment = ({
   useEffect(() => {
     setError(null)
   }, [isOpen])
+
+  useEffect(() => {
+    const ensureStripeSession = async () => {
+      if (
+        !isOpen ||
+        !isStripeLike(selectedPaymentMethod) ||
+        activeSession?.provider_id === selectedPaymentMethod
+      ) {
+        return
+      }
+
+      await initiatePaymentSession(cart, {
+        provider_id: selectedPaymentMethod,
+      })
+
+      router.refresh()
+    }
+
+    ensureStripeSession()
+  }, [
+    isOpen,
+    selectedPaymentMethod,
+    activeSession?.provider_id,
+    cart,
+    router,
+  ])
 
   return (
     <div className="bg-white">
@@ -196,7 +224,9 @@ const Payment = ({
             onClick={handleSubmit}
             isLoading={isLoading}
             disabled={
-              (isStripeLike(selectedPaymentMethod) && !cardComplete) ||
+              (isStripeLike(selectedPaymentMethod) &&
+                activeSession?.provider_id === selectedPaymentMethod &&
+                !cardComplete) ||
               (!selectedPaymentMethod && !paidByGiftcard)
             }
             data-testid="submit-payment-button"

@@ -34,7 +34,7 @@ export default async function initial_data_seed({
     ModuleRegistrationName.FULFILLMENT
   );
 
-  const countries = ["gb", "de", "dk", "se", "fr", "es", "it"];
+  const countries = ["us"];
 
   logger.info("Seeding store data...");
   const {
@@ -80,11 +80,11 @@ export default async function initial_data_seed({
           name: "Default Store",
           supported_currencies: [
             {
-              currency_code: "eur",
+              currency_code: "usd",
               is_default: true,
             },
             {
-              currency_code: "usd",
+              currency_code: "eur",
               is_default: false,
             },
           ],
@@ -99,10 +99,10 @@ export default async function initial_data_seed({
     input: {
       regions: [
         {
-          name: "Europe",
-          currency_code: "eur",
+          name: "United States",
+          currency_code: "usd",
           countries,
-          payment_providers: ["pp_system_default"],
+          payment_providers: ["pp_stripe_stripe"],
         },
       ],
     },
@@ -126,11 +126,11 @@ export default async function initial_data_seed({
     input: {
       locations: [
         {
-          name: "European Warehouse",
+          name: "US Warehouse",
           address: {
-            city: "Copenhagen",
-            country_code: "DK",
-            address_1: "",
+            city: "Long Beach",
+            country_code: "US",
+            address_1: "1604",
           },
         },
       ],
@@ -156,38 +156,14 @@ export default async function initial_data_seed({
   const shippingProfile = shippingProfileResult[0];
 
   const fulfillmentSet = await fulfillmentModuleService.createFulfillmentSets({
-    name: "European Warehouse delivery",
+    name: "US Warehouse delivery",
     type: "shipping",
     service_zones: [
       {
-        name: "Europe",
+        name: "United States",
         geo_zones: [
           {
-            country_code: "gb",
-            type: "country",
-          },
-          {
-            country_code: "de",
-            type: "country",
-          },
-          {
-            country_code: "dk",
-            type: "country",
-          },
-          {
-            country_code: "se",
-            type: "country",
-          },
-          {
-            country_code: "fr",
-            type: "country",
-          },
-          {
-            country_code: "es",
-            type: "country",
-          },
-          {
-            country_code: "it",
+            country_code: "us",
             type: "country",
           },
         ],
@@ -223,10 +199,6 @@ export default async function initial_data_seed({
             amount: 10,
           },
           {
-            currency_code: "eur",
-            amount: 10,
-          },
-          {
             region_id: region.id,
             amount: 10,
           },
@@ -258,10 +230,6 @@ export default async function initial_data_seed({
         prices: [
           {
             currency_code: "usd",
-            amount: 10,
-          },
-          {
-            currency_code: "eur",
             amount: 10,
           },
           {
