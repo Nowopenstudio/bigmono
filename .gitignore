@@ -18,7 +18,6 @@ coverage
 
 # Next.js
 **/.next/
-**/.open-next/
 **/out/
 
 # Production

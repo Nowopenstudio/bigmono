@@ -1,40 +1,157 @@
-import { listCategories } from "@lib/data/categories"
-import { listCollections } from "@lib/data/collections"
-import { Text, clx } from "@medusajs/ui"
-import Image from "next/image"
+import { listCategories } from "@lib/data/categories";
+import { listCollections } from "@lib/data/collections";
+import { Text, clx } from "@modules/common/components/ui";
 
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import MedusaCTA from "@modules/layout/components/medusa-cta"
-import CTAScroll from "./ctaScroll"
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import MedusaCTA from "@modules/layout/components/medusa-cta";
 
-export default async function Footer({data}:any) {
+export default async function Footer() {
   const { collections } = await listCollections({
     fields: "*products",
-  })
-  const productCategories = await listCategories()
+  });
+  const productCategories = await listCategories();
 
   return (
-    <footer className="fixed z-90 border-[--3px] left-0 bottom-0 h-[60px] navHold w-[100vw] bg-[--yellow] border-black flex items-center">
-     <div className="w-auto flex h-full relative z-10">
-      <div className="h-full w-auto bg-[--red] aspect-square border-r-[3px] border-black">
-      </div>
-      <div className="bg-[--orange] max-w-full w-full h-full px-4 flex gap-6 justify-between items-center border-r-[3px] border-black relative z-10">
-      {data.footerLogo.map((item:any,i:number)=>{
-        return(
-          <div className="h-auto w-auto" key={i}>
-            <Image alt="footer logo" src={item.image} width={100} height={100} sizes="100vw"  className={`fadeOn w-auto h-full`} />
+    <footer className="border-t border-ui-border-base w-full">
+      <div className="content-container flex flex-col w-full">
+        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
+          <div>
+            <LocalizedClientLink
+              href="/"
+              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
+            >
+              Medusa Store
+            </LocalizedClientLink>
           </div>
-        )
-      })}
-      </div>
-      
-     </div>
-     <div className="absolute z-0 left-0 top-0 w-full h-full overflow-hidden">
-        <CTAScroll data={data.marquee} time={20} />
-      </div>
-      
+          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
+            {productCategories && productCategories?.length > 0 && (
+              <div className="flex flex-col gap-y-2">
+                <span className="txt-small-plus txt-ui-fg-base">
+                  Categories
+                </span>
+                <ul
+                  className="grid grid-cols-1 gap-2"
+                  data-testid="footer-categories"
+                >
+                  {productCategories?.slice(0, 6).map((c) => {
+                    if (c.parent_category) {
+                      return;
+                    }
 
-     
+                    const children =
+                      c.category_children?.map((child) => ({
+                        name: child.name,
+                        handle: child.handle,
+                        id: child.id,
+                      })) || null;
+
+                    return (
+                      <li
+                        className="flex flex-col gap-2 text-ui-fg-subtle txt-small"
+                        key={c.id}
+                      >
+                        <LocalizedClientLink
+                          className={clx(
+                            "hover:text-ui-fg-base",
+                            children && "txt-small-plus"
+                          )}
+                          href={`/categories/${c.handle}`}
+                          data-testid="category-link"
+                        >
+                          {c.name}
+                        </LocalizedClientLink>
+                        {children && (
+                          <ul className="grid grid-cols-1 ml-3 gap-2">
+                            {children &&
+                              children.map((child) => (
+                                <li key={child.id}>
+                                  <LocalizedClientLink
+                                    className="hover:text-ui-fg-base"
+                                    href={`/categories/${child.handle}`}
+                                    data-testid="category-link"
+                                  >
+                                    {child.name}
+                                  </LocalizedClientLink>
+                                </li>
+                              ))}
+                          </ul>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+            {collections && collections.length > 0 && (
+              <div className="flex flex-col gap-y-2">
+                <span className="txt-small-plus txt-ui-fg-base">
+                  Collections
+                </span>
+                <ul
+                  className={clx(
+                    "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
+                    {
+                      "grid-cols-2": (collections?.length || 0) > 3,
+                    }
+                  )}
+                >
+                  {collections?.slice(0, 6).map((c) => (
+                    <li key={c.id}>
+                      <LocalizedClientLink
+                        className="hover:text-ui-fg-base"
+                        href={`/collections/${c.handle}`}
+                      >
+                        {c.title}
+                      </LocalizedClientLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <div className="flex flex-col gap-y-2">
+              <span className="txt-small-plus txt-ui-fg-base">Medusa</span>
+              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
+                <li>
+                  <a
+                    href="https://github.com/medusajs"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-ui-fg-base"
+                  >
+                    GitHub
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://docs.medusajs.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-ui-fg-base"
+                  >
+                    Documentation
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/medusajs/dtc-starter"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-ui-fg-base"
+                  >
+                    Source code
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
+          <Text className="txt-compact-small">
+            © {new Date().getFullYear()} Medusa Store. All rights reserved.
+          </Text>
+          <MedusaCTA />
+        </div>
+      </div>
     </footer>
-  )
+  );
 }

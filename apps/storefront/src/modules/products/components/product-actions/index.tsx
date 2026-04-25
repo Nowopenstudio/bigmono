@@ -3,7 +3,7 @@
 import { addToCart } from "@lib/data/cart"
 import { useIntersection } from "@lib/hooks/use-in-view"
 import { HttpTypes } from "@medusajs/types"
-import { Button, clx, Text } from "@medusajs/ui"
+import { Button } from "@modules/common/components/ui"
 import Divider from "@modules/common/components/divider"
 import OptionSelect from "@modules/products/components/product-actions/option-select"
 import { isEqual } from "lodash"
@@ -16,22 +16,20 @@ import { useRouter } from "next/navigation"
 type ProductActionsProps = {
   product: HttpTypes.StoreProduct
   region: HttpTypes.StoreRegion
-  sanity?:any
   disabled?: boolean
 }
 
 const optionsAsKeymap = (
   variantOptions: HttpTypes.StoreProductVariant["options"]
 ) => {
-  return variantOptions?.reduce((acc: Record<string, string>, varopt: any) => {
-    acc[varopt.option_id] = varopt.value
+  return variantOptions?.reduce((acc: Record<string, string>, varopt) => {
+    if (varopt.option_id) acc[varopt.option_id] = varopt.value
     return acc
   }, {})
 }
 
 export default function ProductActions({
   product,
-  sanity,
   disabled,
 }: ProductActionsProps) {
   const router = useRouter()
@@ -139,22 +137,13 @@ export default function ProductActions({
 
   return (
     <>
-    <div className="px-6">
-      <ProductPrice product={product} variant={selectedVariant} />
-      <Text
-            className="richText mt-6"
-            data-testid="product-description"
-          >
-            {sanity?.specs[0]?.content || product.description}
-          </Text>
-    </div>
-      <div  ref={actionsRef} className="absolute bottom-0 left-0 right-0">
-        <div className=" border-t-[3px] border-black w-full">
+      <div className="flex flex-col gap-y-2" ref={actionsRef}>
+        <div>
           {(product.variants?.length ?? 0) > 1 && (
-            <div className={clx(' w-full')}>
-              {(product.options || []).map((option,index) => {
+            <div className="flex flex-col gap-y-4">
+              {(product.options || []).map((option) => {
                 return (
-                  <div key={option.id} className="w-full">
+                  <div key={option.id}>
                     <OptionSelect
                       option={option}
                       current={options[option.id]}
@@ -166,12 +155,12 @@ export default function ProductActions({
                   </div>
                 )
               })}
-             
+              <Divider />
             </div>
           )}
         </div>
 
-        
+        <ProductPrice product={product} variant={selectedVariant} />
 
         <Button
           onClick={handleAddToCart}
@@ -183,7 +172,7 @@ export default function ProductActions({
             !isValidVariant
           }
           variant="primary"
-          className="w-full bg-[white] border-[3px] border-black rounded-none text-black bg-[--red] navHold hover:bg-[--yellow] h-[55px] my-0"
+          className="w-full h-10"
           isLoading={isAdding}
           data-testid="add-product-button"
         >

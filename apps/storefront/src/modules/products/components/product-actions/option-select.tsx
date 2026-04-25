@@ -1,5 +1,5 @@
 import { HttpTypes } from "@medusajs/types"
-import { clx } from "@medusajs/ui"
+import { clx } from "@modules/common/components/ui"
 import React from "react"
 
 type OptionSelectProps = {
@@ -22,24 +22,23 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
   const filteredOptions = (option.values ?? []).map((v) => v.value)
 
   return (
-    <div className="w-full">
+    <div className="flex flex-col gap-y-3">
+      <span className="text-sm">Select {title}</span>
       <div
-        className="flex flex-nowrap justify-around w-full"
+        className="flex flex-wrap justify-between gap-2"
         data-testid={dataTestId}
       >
-        {filteredOptions.map((v,index) => {
+        {filteredOptions.map((v) => {
           return (
             <button
               onClick={() => updateOption(option.id, v)}
               key={v}
-              style={{flexGrow:filteredOptions.length <= 2 ? 1 : index+1}}
               className={clx(
-                "border-r-[3px] border-b-[3px]  border-black text-small-regular h-[55px] p-2 flex-1 rounded-none my-0 mt-0 navHold",
+                "border-ui-border-base bg-ui-bg-subtle border text-small-regular h-10 rounded-rounded p-2 flex-1 ",
                 {
-                  "bg-[--black] text-[--white]": v === current,
+                  "border-ui-border-interactive": v === current,
                   "hover:shadow-elevation-card-rest transition-shadow ease-in-out duration-150":
                     v !== current,
-                    
                 }
               )}
               disabled={disabled}

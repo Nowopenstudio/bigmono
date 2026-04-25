@@ -1,17 +1,15 @@
-import { H1Stroke, H3Stroke } from "@lib/util/misc"
 import { HttpTypes } from "@medusajs/types"
-import { Heading, Text } from "@medusajs/ui"
+import { Heading, Text } from "@modules/common/components/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 type ProductInfoProps = {
   product: HttpTypes.StoreProduct
-  sanity?:any
 }
 
-const ProductInfo = ({ product, sanity }: ProductInfoProps) => {
+const ProductInfo = ({ product }: ProductInfoProps) => {
   return (
-    <div id="product-info ">
-      <div className="flex flex-col gap-y-4 lg:max-w-[500px] ">
+    <div id="product-info">
+      <div className="flex flex-col gap-y-4 lg:max-w-[500px] mx-auto">
         {product.collection && (
           <LocalizedClientLink
             href={`/collections/${product.collection.handle}`}
@@ -20,11 +18,20 @@ const ProductInfo = ({ product, sanity }: ProductInfoProps) => {
             {product.collection.title}
           </LocalizedClientLink>
         )}
-        <H3Stroke text={product.title} color={"#000000"} bg={sanity?.prime.hex || "#FE97DB"} />
-        
-         
+        <Heading
+          level="h2"
+          className="text-3xl leading-10 text-ui-fg-base"
+          data-testid="product-title"
+        >
+          {product.title}
+        </Heading>
 
-       
+        <Text
+          className="text-medium text-ui-fg-subtle whitespace-pre-line"
+          data-testid="product-description"
+        >
+          {product.description}
+        </Text>
       </div>
     </div>
   )

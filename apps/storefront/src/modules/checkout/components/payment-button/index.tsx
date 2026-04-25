@@ -77,17 +77,8 @@ const StripePaymentButton = ({
 
   const handlePayment = async () => {
     setSubmitting(true)
-    setErrorMessage(null)
 
     if (!stripe || !elements || !cart) {
-      setSubmitting(false)
-      return
-    }
-
-    const submitResult = await elements.submit()
-
-    if (submitResult.error) {
-      setErrorMessage(submitResult.error.message || null)
       setSubmitting(false)
       return
     }
@@ -131,7 +122,6 @@ const StripePaymentButton = ({
           }
 
           setErrorMessage(error.message || null)
-          setSubmitting(false)
           return
         }
 
@@ -142,11 +132,7 @@ const StripePaymentButton = ({
           return onPaymentCompleted()
         }
 
-        setSubmitting(false)
-      })
-      .catch((e) => {
-        setErrorMessage(e?.message || "Unable to confirm payment")
-        setSubmitting(false)
+        return
       })
   }
 

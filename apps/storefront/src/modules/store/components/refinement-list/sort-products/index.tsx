@@ -13,15 +13,15 @@ type SortProductsProps = {
 const sortOptions = [
   {
     value: "created_at",
-    label: "Latest",
+    label: "Latest Arrivals",
   },
   {
     value: "price_asc",
-    label: "Low→High",
+    label: "Price: Low -> High",
   },
   {
     value: "price_desc",
-    label: "High→Low",
+    label: "Price: High -> Low",
   },
 ]
 
@@ -30,8 +30,8 @@ const SortProducts = ({
   sortBy,
   setQueryParams,
 }: SortProductsProps) => {
-  const handleChange = (value: SortOptions) => {
-    setQueryParams("sortBy", value)
+  const handleChange = (value: string) => {
+    setQueryParams("sortBy", value as SortOptions)
   }
 
   return (

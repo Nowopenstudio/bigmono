@@ -29,10 +29,10 @@ const RefinementList = ({ sortBy, 'data-testid': dataTestId }: RefinementListPro
   const setQueryParams = (name: string, value: string) => {
     const query = createQueryString(name, value)
     router.push(`${pathname}?${query}`)
-  } 
+  }
 
   return (
-    <div className="flex  border=b-[3px] border-black">
+    <div className="flex small:flex-col gap-12 py-4 mb-8 small:px-0 pl-6 small:min-w-[250px] small:ml-[1.675rem]">
       <SortProducts sortBy={sortBy} setQueryParams={setQueryParams} data-testid={dataTestId} />
     </div>
   )
