@@ -5,6 +5,9 @@ import { getRegion, listRegions } from "@lib/data/regions"
 import ProductTemplate from "@modules/products/templates"
 import { HttpTypes } from "@medusajs/types"
 
+/** Avoid build-time Medusa calls so CI / Medusa Cloud can finish next build and emit .next/BUILD_ID for OpenNext. */
+export const dynamic = "force-dynamic"
+
 type Props = {
   params: Promise<{ countryCode: string; handle: string }>
   searchParams: Promise<{ v_id?: string }>
