@@ -77,8 +77,16 @@ const StripePaymentButton = ({
 
   const handlePayment = async () => {
     setSubmitting(true)
+    setErrorMessage(null)
 
     if (!stripe || !elements || !cart) {
+      setSubmitting(false)
+      return
+    }
+
+    const submitResult = await elements.submit()
+    if (submitResult.error) {
+      setErrorMessage(submitResult.error.message || null)
       setSubmitting(false)
       return
     }
