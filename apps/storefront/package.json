@@ -19,6 +19,7 @@
     "node": "20.x"
   },
   "dependencies": {
+    "@dtc/opennext-bin-shim": "file:../../tools/opennext-bin-shim",
     "@headlessui/react": "^2.2.0",
     "@medusajs/icons": "2.14.0",
     "@medusajs/js-sdk": "2.14.0",

@@ -33,6 +33,7 @@
   ],
   "overrides": {},
   "dependencies": {
+    "@dtc/opennext-bin-shim": "file:tools/opennext-bin-shim",
     "@opennextjs/cloudflare": "^1.19.4",
     "@medusajs/ui": "^4.1.8",
     "lenis": "^1.3.23",
