@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "next dev --turbopack -p 8000",
     "build": "npm exec next build -- --webpack && node scripts/ensure-next-manifests.js",
+    "postinstall": "node scripts/link-opennext-root-bin.js",
     "start": "next start -p 8000",
     "lint": "eslint .",
     "analyze": "ANALYZE=true next build"
