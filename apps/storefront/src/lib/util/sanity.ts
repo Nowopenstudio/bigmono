@@ -1,6 +1,6 @@
 
 import {createClient} from 'next-sanity'
-import {apiVersion, dataset, projectId, token } from "../../../env"
+import {apiVersion, dataset, projectId } from "../../sanity/env"
 import { createImageUrlBuilder } from '@sanity/image-url'
 
 
@@ -48,7 +48,7 @@ export const client = createClient({
     projectId,
     dataset,
     apiVersion,
-    token,
+    token: process.env.NEXT_PUBLIC_SANITY_API_TOKEN,
     useCdn: false,
     perspective:'published'
 })
