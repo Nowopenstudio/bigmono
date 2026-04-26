@@ -45,6 +45,12 @@ export const listProducts = async ({
     }
   }
 
+  if (!region.currency_code) {
+    throw new Error(
+      `Region "${region.id}" is missing currency_code required for price calculation`
+    )
+  }
+
   const headers = {
     ...(await getAuthHeaders()),
   }
@@ -62,6 +68,7 @@ export const listProducts = async ({
           limit,
           offset,
           region_id: region?.id,
+          currency_code: region.currency_code,
           fields:
             "*variants.calculated_price,+variants.inventory_quantity,*variants.images,+metadata,+tags,",
           ...queryParams,
