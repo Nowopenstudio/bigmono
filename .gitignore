@@ -18,7 +18,7 @@ coverage
 
 # Next.js
 **/.next/
-**/.open-next
+**/.open-next/
 **/out/
 
 **/node_modules
