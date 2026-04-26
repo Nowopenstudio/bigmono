@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude plugin:*)",
+      "WebSearch",
+      "WebFetch(domain:docs.medusajs.com)"
+    ]
+  }
+}

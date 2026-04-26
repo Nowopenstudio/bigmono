@@ -21,7 +21,7 @@ coverage
 **/out/
 
 **/node_modules
-**/.open-next
+
 
 # Production
 **/build
