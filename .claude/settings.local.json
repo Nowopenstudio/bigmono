@@ -7,7 +7,15 @@
       "Bash(npm install:*)",
       "Bash(npm run:*)",
       "Bash(npm ls:*)",
-      "Bash(npm show:*)"
+      "Bash(npm show:*)",
+      "Bash(pg_dump:*)",
+      "Bash(docker:*)",
+      "Read(//c/Program Files/PostgreSQL/**)",
+      "Read(//c/Program Files/PostgreSQL//**)",
+      "Bash(rm:*)",
+      "Bash(\"/c/Program Files/PostgreSQL/16/bin/pg_dump\":*)",
+      "Bash(\"/c/Program:*)",
+      "Bash(\"/c/Program Files/PostgreSQL/16/bin/psql\":*)"
     ]
   }
 }
