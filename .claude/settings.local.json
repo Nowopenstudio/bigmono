@@ -3,7 +3,10 @@
     "allow": [
       "Bash(claude plugin:*)",
       "WebSearch",
-      "WebFetch(domain:docs.medusajs.com)"
+      "WebFetch(domain:docs.medusajs.com)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npm ls:*)"
     ]
   }
 }
