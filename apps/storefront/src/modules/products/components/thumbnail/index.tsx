@@ -27,7 +27,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   return (
     <Container
       className={clx(
-        "relative w-full overflow-hidden p-4 aspect-[3/4] border-black border-r-[3px] border-b-[3px] rounded-none",
+        "relative w-full overflow-hidden aspect-[3/4] border-black border-r-[3px] border-b-[3px] rounded-none",
         className
       )}
       data-testid={dataTestid}

@@ -12,6 +12,7 @@ import LineItemUnitPrice from "@modules/common/components/line-item-unit-price"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Spinner from "@modules/common/icons/spinner"
 import Thumbnail from "@modules/products/components/thumbnail"
+import { client } from "sanity/lib/client"
 import { useState } from "react"
 
 type ItemProps = {
@@ -20,7 +21,7 @@ type ItemProps = {
   currencyCode: string
 }
 
-const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
+const Item =  ({ item, type = "full", currencyCode }: ItemProps) => {
   const [updating, setUpdating] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -43,10 +44,11 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
   // TODO: Update this to grab the actual max inventory
   const maxQtyFromInventory = 10
   const maxQuantity = item.variant?.manage_inventory ? 10 : maxQtyFromInventory
+  // const sanity = (await client.getDocument(item.id))
 
   return (
-    <Table.Row className="w-full" data-testid="product-row">
-      <Table.Cell className="!pl-0 p-4 w-24">
+    <Table.Row className="w-full border-x-[3px] border-b-[3px] border-black richText" data-testid="product-row">
+      <Table.Cell className=" w-24 !p-0">
         <LocalizedClientLink
           href={`/products/${item.product_handle}`}
           className={clx("flex", {
@@ -64,7 +66,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
 
       <Table.Cell className="text-left">
         <Text
-          className="txt-medium-plus text-ui-fg-base"
+          className=" w-full"
           data-testid="product-title"
         >
           {item.product_title}
@@ -79,7 +81,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
             <CartItemSelect
               value={item.quantity}
               onChange={(value) => changeQuantity(parseInt(value.target.value))}
-              className="w-14 h-10 p-4"
+              className="w-14 h-10 richText"
               data-testid="product-select-button"
             >
               {/* TODO: Update this with the v2 way of managing inventory */}
@@ -132,7 +134,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
           )}
           <LineItemPrice
             item={item}
-            style="tight"
+            style="cart"
             currencyCode={currencyCode}
           />
         </span>

@@ -5,7 +5,7 @@ import { clx } from "@modules/common/components/ui"
 
 type LineItemPriceProps = {
   item: HttpTypes.StoreCartLineItem | HttpTypes.StoreOrderLineItem
-  style?: "default" | "tight"
+  style?: "default" | "tight" | "cart"
   currencyCode: string
 }
 
@@ -20,7 +20,7 @@ const LineItemPrice = ({
   const hasReducedPrice = currentPrice < originalPrice
 
   return (
-    <div className="flex flex-col gap-x-2 text-ui-fg-subtle items-end">
+    <div className="flex flex-col gap-x-2 items-end pr-6">
       <div className="text-left">
         {hasReducedPrice && (
           <>
@@ -46,8 +46,9 @@ const LineItemPrice = ({
           </>
         )}
         <span
-          className={clx("text-base-regular", {
-            "text-ui-fg-interactive": hasReducedPrice,
+          className={clx("", {
+            "text-ui-fg-interactive text-base-regular": hasReducedPrice && style !== "cart",
+            "richText text-black text-[--green]": hasReducedPrice && style === "cart",
           })}
           data-testid="product-price"
         >

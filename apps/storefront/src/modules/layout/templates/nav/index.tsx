@@ -28,7 +28,7 @@ export default async function Nav({cover}:any) {
          
 
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
-            <div className="hidden small:flex items-center gap-x-6 h-full uppercase">
+            <div className="hidden small:flex items-center gap-x-6 h-full uppercase bg-blend-difference">
             <LocalizedClientLink
                 className="hover:text-ui-fg-base"
                 href="/products"

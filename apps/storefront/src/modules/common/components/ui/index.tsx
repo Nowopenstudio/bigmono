@@ -274,7 +274,7 @@ const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(
     return (
       <tbody
         ref={ref}
-        className={clsx("[&_tr:last-child]:border-0", className)}
+        className={clsx("last-child", className)}
         {...props}
       >
         {children}
