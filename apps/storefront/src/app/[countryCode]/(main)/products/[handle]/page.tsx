@@ -4,9 +4,8 @@ import { listProducts } from "@lib/data/products"
 import { getRegion, listRegions } from "@lib/data/regions"
 import ProductTemplate from "@modules/products/templates"
 import { HttpTypes } from "@medusajs/types"
+import { client } from "../../../../../sanity/lib/client"
 
-/** Avoid build-time Medusa calls so CI / Medusa Cloud can finish next build and emit .next/BUILD_ID for OpenNext. */
-export const dynamic = "force-dynamic"
 
 type Props = {
   params: Promise<{ countryCode: string; handle: string }>
@@ -64,12 +63,12 @@ function getImagesForVariant(
   }
 
   const variant = product.variants!.find((v) => v.id === selectedVariantId)
-  if (!variant || !variant.images?.length) {
+  if (!variant || !variant.images!.length) {
     return product.images
   }
 
   const imageIdsMap = new Map(variant.images!.map((i) => [i.id, true]))
-  return product.images?.filter((i) => imageIdsMap.has(i.id)) ?? null
+  return product.images!.filter((i) => imageIdsMap.has(i.id))
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
@@ -91,10 +90,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${product.title} | Medusa Store`,
+    title: `${product.title} | BIG Store`,
     description: `${product.title}`,
     openGraph: {
-      title: `${product.title} | Medusa Store`,
+      title: `${product.title} | BIG Store`,
       description: `${product.title}`,
       images: product.thumbnail ? [product.thumbnail] : [],
     },
@@ -106,7 +105,6 @@ export default async function ProductPage(props: Props) {
   const region = await getRegion(params.countryCode)
   const searchParams = await props.searchParams
 
-  const selectedVariantId = searchParams.v_id
 
   if (!region) {
     notFound()
@@ -117,18 +115,23 @@ export default async function ProductPage(props: Props) {
     queryParams: { handle: params.handle },
   }).then(({ response }) => response.products[0])
 
-  const images = getImagesForVariant(pricedProduct, selectedVariantId)
-
   if (!pricedProduct) {
     notFound()
   }
+  const selectedVariantId = searchParams.v_id
+
+  // alternatively, you can filter the content by the language
+  const sanity = (await client.getDocument(pricedProduct.id))
+  const images = getImagesForVariant(pricedProduct, selectedVariantId)
 
   return (
     <ProductTemplate
       product={pricedProduct}
       region={region}
       countryCode={params.countryCode}
-      images={images ?? []}
+    images={images || []}
+    sanity={sanity}
+   
     />
   )
 }

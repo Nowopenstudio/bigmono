@@ -1,4 +1,4 @@
-import { clx } from "@modules/common/components/ui"
+import { clx } from "@medusajs/ui"
 
 import { getProductPrice } from "@lib/util/get-product-price"
 import { HttpTypes } from "@medusajs/types"
@@ -22,20 +22,20 @@ export default function ProductPrice({
   }
 
   return (
-    <div className="flex flex-col text-ui-fg-base">
-      <span
-        className={clx("text-xl-semi", {
+    <div className="flex flex-col">
+      <h3
+        className={clx("", {
           "text-ui-fg-interactive": selectedPrice.price_type === "sale",
         })}
       >
-        {!variant && "From "}
+    
         <span
           data-testid="product-price"
           data-value={selectedPrice.calculated_price_number}
         >
           {selectedPrice.calculated_price}
         </span>
-      </span>
+      </h3>
       {selectedPrice.price_type === "sale" && (
         <>
           <p>

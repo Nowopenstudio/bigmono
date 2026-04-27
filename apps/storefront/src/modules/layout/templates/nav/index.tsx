@@ -62,11 +62,11 @@ export default async function Nav({cover}:any) {
             <Suspense
               fallback={
                 <LocalizedClientLink
-                  className="hover:text-ui-fg-base flex gap-2"
+                  className=" flex gap-2 uppercase"
                   href="/cart"
-                  data-testid="nav-cart-link uppercase"
+                  data-testid="nav-cart-link"
                 >
-                  Cart (0)
+                  CART (0)
                 </LocalizedClientLink>
               }
             >

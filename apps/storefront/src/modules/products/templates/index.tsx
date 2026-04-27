@@ -17,6 +17,9 @@ type ProductTemplateProps = {
   region: HttpTypes.StoreRegion
   countryCode: string
   images: HttpTypes.StoreProductImage[]
+  sanity?:any
+  
+
 }
 
 const ProductTemplate: React.FC<ProductTemplateProps> = ({
@@ -24,6 +27,8 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   region,
   countryCode,
   images,
+  sanity,
+  
 }) => {
   if (!product || !product.id) {
     return notFound()
@@ -32,33 +37,37 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   return (
     <>
       <div
-        className="content-container  flex flex-col small:flex-row small:items-start py-6 relative"
+        className="grid grid-cols-2 relative items-start"
         data-testid="product-container"
       >
-        <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-6">
-          <ProductInfo product={product} />
-          <ProductTabs product={product} />
-        </div>
-        <div className="block w-full relative">
+      
+        <div className="w-full relative col-span-1 h-auto">
           <ImageGallery images={images} />
         </div>
-        <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-12">
-          <ProductOnboardingCta />
-          <Suspense
-            fallback={
-              <ProductActions
-                disabled={true}
-                product={product}
-                region={region}
-              />
-            }
-          >
-            <ProductActionsWrapper id={product.id} region={region} />
-          </Suspense>
+        <div className="col-span-1 h-[calc(100vh_-_255px)] sticky top-[200px]">
+          <div className="flex flex-col w-full p-6 py-6">
+            <ProductInfo product={product} sanity={sanity} />
+            {/* <ProductTabs product={product} /> */}
+          </div>
+          <div className=" w-full">
+            <ProductOnboardingCta />
+            <Suspense
+              fallback={
+                <ProductActions
+                  disabled={true}
+                  sanity={sanity} 
+                  product={product}
+                  region={region}
+                />
+              }
+            >
+              <ProductActionsWrapper id={product.id} region={region} />
+            </Suspense>
+          </div>
         </div>
       </div>
       <div
-        className="content-container my-16 small:my-32"
+        
         data-testid="related-products-container"
       >
         <Suspense fallback={<SkeletonRelatedProducts />}>
@@ -66,7 +75,9 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
         </Suspense>
       </div>
     </>
+    
   )
+  
 }
 
 export default ProductTemplate

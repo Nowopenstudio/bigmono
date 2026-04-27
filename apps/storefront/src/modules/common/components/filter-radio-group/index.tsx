@@ -1,13 +1,14 @@
 import { EllipseMiniSolid } from "@medusajs/icons"
-import { Label, RadioGroup, Text, clx } from "@modules/common/components/ui"
+import { Label, RadioGroup, Text, clx } from "@medusajs/ui"
+
 type FilterRadioGroupProps = {
   title: string
   items: {
     value: string
     label: string
   }[]
-  value: string
-  handleChange: (value: string) => void
+  value: any
+  handleChange: (...args: any[]) => void
   "data-testid"?: string
 }
 
@@ -19,41 +20,44 @@ const FilterRadioGroup = ({
   "data-testid": dataTestId,
 }: FilterRadioGroupProps) => {
   return (
-    <div className="flex gap-x-3 flex-col gap-y-3">
-      <Text className="txt-compact-small-plus text-ui-fg-muted">{title}</Text>
-      <RadioGroup data-testid={dataTestId}>
-        {items?.map((i) => (
-          <div
-            key={i.value}
-            className={clx("flex gap-x-2 items-center", {
-              "ml-[-23px]": i.value === value,
-            })}
-          >
-            {i.value === value && <EllipseMiniSolid />}
-            <RadioGroup.Item
-              checked={i.value === value}
-              onChange={() => handleChange(i.value)}
-              className="hidden peer"
-              id={i.value}
-              value={i.value}
-            />
-            <Label
-              htmlFor={i.value}
-              className={clx(
-                "!txt-compact-small !transform-none text-ui-fg-subtle hover:cursor-pointer",
+   <div className="w-full border-b-[3px] border-black bg-[--yellow] flex justify-between items-center navHold">
+    <div className="px-6">{title}</div>
+      <div className="flex items-center w-auto flex-nowrap justify-end h-full">
+        <RadioGroup data-testid={dataTestId} onValueChange={handleChange} className="flex justify-center w-auto flex-nowrap h-full gap-0">
+          {items?.map((i) => (
+            <div
+              key={i.value}
+              className={clx(`flex  items-center  border-l-[3px] border-black`,
                 {
-                  "text-ui-fg-base": i.value === value,
+                  "bg-[--green]": i.value === value,
                 }
               )}
-              data-testid="radio-label"
-              data-active={i.value === value}
             >
-              {i.label}
-            </Label>
-          </div>
-        ))}
-      </RadioGroup>
-    </div>
+             
+              <RadioGroup.Item
+                checked={i.value === value}
+                className="hidden peer"
+                id={i.value}
+                value={i.value}
+              />
+              <Label
+                htmlFor={i.value}
+                className={clx(
+                  " !transform-none  hover:cursor-pointer navHold p-4",
+                  {
+                    "bg-[--green]": i.value === value,
+                  }
+                )}
+                data-testid="radio-label"
+                data-active={i.value === value}
+              >
+                {i.label}
+              </Label>
+            </div>
+          ))}
+        </RadioGroup>
+      </div>
+   </div>
   )
 }
 
