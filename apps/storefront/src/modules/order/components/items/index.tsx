@@ -8,9 +8,10 @@ import SkeletonLineItem from "@modules/skeletons/components/skeleton-line-item"
 
 type ItemsProps = {
   order: HttpTypes.StoreOrder
+  tight?: boolean
 }
 
-const Items = ({ order }: ItemsProps) => {
+const Items = ({ order, tight = false }: ItemsProps) => {
   const items = order.items
 
   return (
@@ -28,6 +29,7 @@ const Items = ({ order }: ItemsProps) => {
                     <Item
                       key={item.id}
                       item={item}
+                      tight={tight}
                       currencyCode={order.currency_code}
                     />
                   )

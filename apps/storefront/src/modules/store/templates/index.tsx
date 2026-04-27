@@ -24,7 +24,7 @@ const StoreTemplate = ({
       data-testid="category-container"
     >
       <RefinementList sortBy={sort} />
-      <div className="w-full">
+      <div className="w-full pb-[55px]">
        
         <Suspense fallback={<SkeletonProductGrid />}>
           <PaginatedProducts

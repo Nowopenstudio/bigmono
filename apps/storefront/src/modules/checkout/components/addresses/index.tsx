@@ -42,13 +42,12 @@ const Addresses = ({
   return (
     <div className="bg-white">
       <div className="flex flex-row items-center justify-between mb-6">
-        <Heading
-          level="h2"
-          className="flex flex-row text-3xl-regular gap-x-2 items-baseline"
+        <p
+          className="flex flex-row richText items-baseline"
         >
           Shipping Address
           {!isOpen && <CheckCircleSolid />}
-        </Heading>
+        </p>
         {!isOpen && cart?.shipping_address && (
           <Text>
             <button

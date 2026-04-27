@@ -6,12 +6,14 @@ type LineItemUnitPriceProps = {
   item: HttpTypes.StoreCartLineItem | HttpTypes.StoreOrderLineItem
   style?: "default" | "tight"
   currencyCode: string
+  tight?: boolean
 }
 
 const LineItemUnitPrice = ({
   item,
   style = "default",
   currencyCode,
+  tight = false,
 }: LineItemUnitPriceProps) => {
   const total = item.total ?? 0
   const original_total = item.original_total ?? 0
@@ -45,8 +47,10 @@ const LineItemUnitPrice = ({
         </>
       )}
       <span
-        className={clx("richText", {
+        className={clx("", {
           "text-[--green]": hasReducedPrice,
+          "richText p-6": !tight,
+          "text-ui-fg-subtle": tight,
         })}
         data-testid="product-unit-price "
       >

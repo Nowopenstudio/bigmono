@@ -1,9 +1,11 @@
 "use client"
 
 import { convertToLocale } from "@lib/util/money"
+import { clx } from "@modules/common/components/ui"
 import React from "react"
 
 type CartTotalsProps = {
+  tight?: boolean
   totals: {
     total?: number | null
     subtotal?: number | null
@@ -15,7 +17,7 @@ type CartTotalsProps = {
   }
 }
 
-const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
+const CartTotals: React.FC<CartTotalsProps> = ({ totals, tight = false }) => {
   const {
     currency_code,
     total,
@@ -27,7 +29,12 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
 
   return (
     <div>
-      <div className="flex flex-col gap-y-2 richText  p-6 ">
+      <div
+        className={clx("flex flex-col gap-y-2 ", {
+          "txt-medium text-ui-fg-subtle": tight,
+          "richText p-6": !tight,
+        })}
+      >
         <div className="flex items-center justify-between mb-2">
           <span>Subtotal (excl. shipping and taxes)</span>
           <span data-testid="cart-subtotal mb-2" data-value={item_subtotal || 0}>
@@ -63,11 +70,17 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
           </span>
         </div>
       </div>
-      <div className="h-px w-full border-b-[3px] border-black my-4" />
-      <div className="flex items-center justify-between p-6 richText  ">
+      <div className="h-px w-full border-b-[3px] border-black my-6" />
+      <div className={clx("flex  gap-y-2 justify-between ", {
+          "txt-medium text-ui-fg-subtle": tight,
+          "richText p-6": !tight,
+        })}>
         <span>Total</span>
         <span
-          className="txt-xlarge-plus richText "
+          className={clx("flex flex-col  gap-y-2 justify-between ", {
+            "txt-medium text-ui-fg-subtle": tight,
+            "richText p-6": !tight,
+          })}
           data-testid="cart-total"
           data-value={total || 0}
         >

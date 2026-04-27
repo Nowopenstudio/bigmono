@@ -7,12 +7,14 @@ type LineItemPriceProps = {
   item: HttpTypes.StoreCartLineItem | HttpTypes.StoreOrderLineItem
   style?: "default" | "tight" | "cart"
   currencyCode: string
+  tight?: boolean
 }
 
 const LineItemPrice = ({
   item,
   style = "default",
   currencyCode,
+  tight = false,
 }: LineItemPriceProps) => {
   const { total, original_total } = item
   const originalPrice = original_total ?? 0
@@ -20,7 +22,7 @@ const LineItemPrice = ({
   const hasReducedPrice = currentPrice < originalPrice
 
   return (
-    <div className="flex flex-col gap-x-2 items-end pr-6">
+    <div className="flex flex-col gap-x-2 items-end ">
       <div className="text-left">
         {hasReducedPrice && (
           <>
@@ -47,8 +49,8 @@ const LineItemPrice = ({
         )}
         <span
           className={clx("", {
-            "text-ui-fg-interactive text-base-regular": hasReducedPrice && style !== "cart",
-            "richText text-black text-[--green]": hasReducedPrice && style === "cart",
+            "text-ui-fg-interactive text-base-regular": hasReducedPrice && style !== "cart" || tight,
+            "richText text-black text-[--green] p-6": hasReducedPrice && style === "cart" || !tight,
           })}
           data-testid="product-price"
         >

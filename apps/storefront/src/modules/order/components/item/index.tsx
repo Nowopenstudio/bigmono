@@ -9,9 +9,10 @@ import Thumbnail from "@modules/products/components/thumbnail"
 type ItemProps = {
   item: HttpTypes.StoreCartLineItem | HttpTypes.StoreOrderLineItem
   currencyCode: string
+  tight?: boolean
 }
 
-const Item = ({ item, currencyCode }: ItemProps) => {
+const Item = ({ item, currencyCode, tight = false }: ItemProps) => {
   return (
     <Table.Row className="w-full" data-testid="product-row">
       <Table.Cell className="!pl-0 p-4 w-24">
@@ -38,6 +39,7 @@ const Item = ({ item, currencyCode }: ItemProps) => {
             </Text>
             <LineItemUnitPrice
               item={item}
+              tight={tight}
               style="tight"
               currencyCode={currencyCode}
             />
@@ -45,6 +47,7 @@ const Item = ({ item, currencyCode }: ItemProps) => {
 
           <LineItemPrice
             item={item}
+            tight={tight}
             style="tight"
             currencyCode={currencyCode}
           />
