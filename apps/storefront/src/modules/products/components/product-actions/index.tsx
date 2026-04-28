@@ -188,7 +188,7 @@ export default function ProductActions({
           }
           variant="primary"
           className={clx(
-            "w-full bg-[white] border-[3px] border-black rounded-none text-black bg-[--red] navHold hover:bg-[--yellow] h-[55px] my-0 uppercase",
+            "w-full bg-[white] border-b-[3px] border-black rounded-none text-black bg-[--red] navHold hover:bg-[--yellow] h-[55px] my-0 uppercase",
             {
               "bg-gray-200": hasUnselectedOptions,
             }

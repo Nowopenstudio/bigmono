@@ -20,7 +20,7 @@ const StoreTemplate = ({
 
   return (
     <div
-      className="w-full border-[3px] border-black"
+      className="w-full border-x-[3px] border-black"
       data-testid="category-container"
     >
       <RefinementList sortBy={sort} />
