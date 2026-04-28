@@ -14,7 +14,7 @@ export default function ProductPrice({
     product,
     variantId: variant?.id,
   })
-
+  
   const selectedPrice = variant ? variantPrice : cheapestPrice
 
   if (!selectedPrice) {
@@ -24,11 +24,10 @@ export default function ProductPrice({
   return (
     <div className="flex flex-col">
       <h3
-        className={clx("", {
+        className={clx("hidden sm:block", {
           "text-ui-fg-interactive": selectedPrice.price_type === "sale",
         })}
       >
-    
         <span
           data-testid="product-price"
           data-value={selectedPrice.calculated_price_number}
@@ -36,6 +35,18 @@ export default function ProductPrice({
           {selectedPrice.calculated_price}
         </span>
       </h3>
+      <h4
+        className={clx("sm:hidden", {
+          "text-ui-fg-interactive": selectedPrice.price_type === "sale",
+        })}
+      >
+        <span
+          data-testid="product-price-mobile"
+          data-value={selectedPrice.calculated_price_number}
+        >
+          {selectedPrice.calculated_price}
+        </span>
+      </h4>
       {selectedPrice.price_type === "sale" && (
         <>
           <p>
