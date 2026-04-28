@@ -239,3 +239,37 @@ Button{
 .singleProduct:hover .viewButton{
   max-width:300px;
 }
+
+@media (max-width: 1023px) {
+  h1,
+  h2 {
+    font-size: 48pt;
+  }
+
+  h3 {
+    font-size: 32pt;
+  }
+
+  h4 {
+    font-size: 22pt;
+  }
+
+  .navHold,
+  .navHold p,
+  Label {
+    font-size: 12pt;
+  }
+
+  .richText p,
+  .richText,
+  h2.text-2xl {
+    font-size: 16pt;
+  }
+
+  Button {
+    height: 48px;
+  }
+}
+
+
+

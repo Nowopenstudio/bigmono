@@ -26,7 +26,7 @@ const Summary = ({ cart }: SummaryProps) => {
   const step = getCheckoutStep(cart)
 
   return (
-    <div className="flex flex-col   min-h-[calc(100vh-310px)] bg-[--yellow] relative">
+    <div className="flex flex-col  pb-55 small:pb-0 min-h-[calc(100vh-310px)] bg-[--yellow] relative">
       <div className="px-6 navHold uppercase h-[55px] flex items-center justify-center bg-[--orange] border-b-[3px] border-black">
         Summary
       </div>
@@ -34,7 +34,7 @@ const Summary = ({ cart }: SummaryProps) => {
     
       <CartTotals totals={cart} />
       <LocalizedClientLink
-        className="absolute bottom-0 left-0 right-0 bg-[--red] border-[3px] border-black"
+        className="small:absolute bottom-0 left-0 right-0 bg-[--red] border-[3px] border-black"
         href={"/checkout?step=" + step}
         data-testid="checkout-button"
       >

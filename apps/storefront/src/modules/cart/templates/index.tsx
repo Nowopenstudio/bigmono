@@ -25,10 +25,10 @@ const CartTemplate = ({
                 )}
                 
               </div>
-           <div className="col-span-2">
+           <div className="col-span-3 sm:col-span-2">
               <ItemsTemplate cart={cart} />
            </div>
-            <div className="relative col-span-1">
+            <div className="relative col-span-3 sm:col-span-1">
               <div className="flex flex-col gap-y-8 sticky top-12 border-[3px] border-black">
                 {cart && cart.region && (
                   <>
