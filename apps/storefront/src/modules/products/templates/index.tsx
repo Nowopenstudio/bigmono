@@ -41,11 +41,11 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
         data-testid="product-container"
       >
       
-        <div className="w-full relative col-span-1 h-auto">
+        <div className="w-full relative col-span-2 small:col-span-1 row-start-2  small:row-start-1 small:col-start-1 h-auto">
           <ImageGallery images={images} />
         </div>
-        <div className="col-span-1 h-[calc(100vh_-_255px)] sticky top-[200px]">
-          <div className="flex flex-col w-full p-6 py-6">
+        <div className="row-start-1 col-span-2  small:pb-0 small:col-span-1 h-auto small:h-[calc(100vh_-_255px)] relative small:sticky small:top-[200px]">
+          <div className="flex flex-col w-full p-6 py-6 ">
             <ProductInfo product={product} sanity={sanity} />
             {/* <ProductTabs product={product} /> */}
           </div>

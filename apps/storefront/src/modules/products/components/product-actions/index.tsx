@@ -146,14 +146,14 @@ export default function ProductActions({
     <div className="px-6">
       <ProductPrice product={product} variant={selectedVariant} />
       <Text
-            className="richText mt-6"
+            className="richText mt-6 mb-12 small:mb-0"
             data-testid="product-description"
           >
             {sanity?.specs[0]?.content || product.description}
           </Text>
     </div>
-      <div  ref={actionsRef} className="absolute bottom-0 left-0 right-0">
-        <div className=" border-t-[3px] border-black w-full">
+      <div  ref={actionsRef} className="small:absolute small:bottom-0 small:left-0 small:right-0">
+        <div className=" border-t-[3px] border-black w-full ">
           {(product.variants?.length ?? 0) > 1 && (
             <div className={clx(' w-full')}>
               {(product.options || []).map((option,index) => {

@@ -17,12 +17,12 @@ export default async function Home() {
   <React.Fragment>
     
          <div className="w-full h-auto min-h=[100vh] grid grid-cols-2 border=[3px] border-black">
-         <div className="col-span-1 relative border-r-[3px] border-black" style={{backgroundColor: data.prime.hex}}>
+         <div className="col-span-1 relative hidden medium:block border-r-[3px] border-black" style={{backgroundColor: data.prime.hex}}>
           <div className="w-full sticky top-0 p-6">
             <LogoSolo fill={data.sec.hex} className="w-full h-auto" />
           </div>
          </div>
-         <div className="col-span-1 min-h-[100dvh] " style={{backgroundColor: data.specs[0]?.prime.hex}}>
+         <div className="col-span-2 medium:col-span-1 min-h-[100dvh] " style={{backgroundColor: data.specs[0]?.prime.hex}}>
            {data.specs.length > 0 && data.specs.map((spec:any, index:number) => (
             <div key={index} className="w-full h-auto text-black grid grid-cols-6 p-12 border-b-[3px] border-black" style={{backgroundColor: spec.prime.hex}}>
               <div className="col-span-5 mb-4"><H1Stroke text={spec.title} color={'#000000'} bg={spec.sec.hex} time={0.5*index} /></div>

@@ -53,7 +53,7 @@ export default async function RelatedProducts({
          <CTAScroll data={{text:"Related products"}} time={20}/>
       </div>
 
-      <ul className="grid grid-cols-3">
+      <ul className="grid grid-cols-2 small:grid-cols-3">
         {products.map((product) => (
           <li key={product.id}>
             <Product region={region} product={product} />

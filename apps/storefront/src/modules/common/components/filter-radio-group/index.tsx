@@ -21,13 +21,13 @@ const FilterRadioGroup = ({
 }: FilterRadioGroupProps) => {
   return (
    <div className="w-full border-b-[3px] border-black bg-[--yellow] flex justify-between items-center navHold">
-    <div className="px-6">{title}</div>
-      <div className="flex items-center w-auto flex-nowrap justify-end h-full">
-        <RadioGroup data-testid={dataTestId} onValueChange={handleChange} className="flex justify-center w-auto flex-nowrap h-full gap-0">
+    <div className="px-6 hidden medium:block">{title}</div>
+      <div className="flex items-center w-full medium:w-auto flex-nowrap justify-end h-full">
+        <RadioGroup data-testid={dataTestId} onValueChange={handleChange} className="flex justify-center w-full medium:w-auto flex-nowrap h-full gap-0">
           {items?.map((i) => (
             <div
               key={i.value}
-              className={clx(`flex  items-center  border-l-[3px] border-black`,
+              className={clx(`flex  w-1/3 medium:w-auto items-center  border-l-[3px] border-black`,
                 {
                   "bg-[--green]": i.value === value,
                 }
@@ -36,7 +36,7 @@ const FilterRadioGroup = ({
              
               <RadioGroup.Item
                 checked={i.value === value}
-                className="hidden peer"
+                className="hidden peer "
                 id={i.value}
                 value={i.value}
               />
