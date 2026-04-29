@@ -47,7 +47,7 @@ const Item =  ({ item, type = "full", currencyCode }: ItemProps) => {
   // const sanity = (await client.getDocument(item.id))
 
   return (
-    <Table.Row className="w-full border-x-[3px] border-b-[3px] border-black richText" data-testid="product-row">
+    <Table.Row className="w-full border-l-[3px] border-b-[3px] border-black richText" data-testid="product-row">
       <Table.Cell className=" w-24 !p-0">
         <LocalizedClientLink
           href={`/products/${item.product_handle}`}

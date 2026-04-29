@@ -70,16 +70,16 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals, tight = false }) => {
           </span>
         </div>
       </div>
-      <div className="h-px w-full border-b-[3px] border-black my-6" />
+      <div className="h-px w-full border-b-[3px] border-black " />
       <div className={clx("flex  gap-y-2 justify-between ", {
           "txt-medium text-ui-fg-subtle": tight,
           "richText p-6": !tight,
         })}>
         <span>Total</span>
         <span
-          className={clx("flex flex-col  gap-y-2 justify-between ", {
+          className={clx("flex  gap-y-2 justify-between  ", {
             "txt-medium text-ui-fg-subtle": tight,
-            "richText p-6": !tight,
+            "richText": !tight,
           })}
           data-testid="cart-total"
           data-value={total || 0}

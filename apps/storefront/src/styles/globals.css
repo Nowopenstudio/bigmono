@@ -64,6 +64,7 @@ html.lenis, html.lenis body {
   --teal:#67e7e5;
   --rose:#fe97db;
   --black:#000000;
+  --start:305px;
 }
 
 @layer utilities {
@@ -238,6 +239,10 @@ Button{
 
 .singleProduct:hover .viewButton{
   max-width:300px;
+}
+
+.bounce{
+  transition: all 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 @media (max-width: 1023px) {

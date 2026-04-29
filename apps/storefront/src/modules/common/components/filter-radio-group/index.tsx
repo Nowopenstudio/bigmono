@@ -21,7 +21,7 @@ const FilterRadioGroup = ({
 }: FilterRadioGroupProps) => {
   return (
    <div className="w-full border-b-[3px] border-black bg-[--yellow] flex justify-between items-center navHold">
-    <div className="px-6 hidden medium:block">{title}</div>
+    <div className="px-6 hidden medium:block"></div>
       <div className="flex items-center w-full medium:w-auto flex-nowrap justify-end h-full">
         <RadioGroup data-testid={dataTestId} onValueChange={handleChange} className="flex justify-center w-full medium:w-auto flex-nowrap h-full gap-0">
           {items?.map((i) => (

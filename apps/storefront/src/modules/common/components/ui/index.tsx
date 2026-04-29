@@ -292,7 +292,7 @@ const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
       <tr
         ref={ref}
         className={clsx(
-          "border-b transition-colors hover:bg-gray-50",
+          "border-b-[3px] border-black",
           className
         )}
         {...props}
@@ -361,7 +361,7 @@ const RadioGroupRoot = forwardRef<HTMLDivElement, RadioGroupProps>(
     return (
       <div
         ref={ref}
-        className={clsx("flex flex-col gap-2", className)}
+        className={clsx("flex flex-col ", className)}
         {...props}
       >
         {children}
@@ -378,7 +378,7 @@ type RadioGroupItemProps = InputHTMLAttributes<HTMLInputElement> & {
 const RadioGroupItem = forwardRef<HTMLInputElement, RadioGroupItemProps>(
   ({ className, label, id, ...props }, ref) => {
     return (
-      <div className="flex items-center gap-2">
+      <div className="flex items-center">
         <input
           ref={ref}
           type="radio"

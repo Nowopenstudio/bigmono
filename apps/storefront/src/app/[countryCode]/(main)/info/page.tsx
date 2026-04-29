@@ -1,7 +1,7 @@
 import { PortableText } from "next-sanity";
 import {getData} from "@lib/util/sanity";
 import React from "react";
-import { LogoSolo } from "@modules/assets/assets";
+import { LogoSolo, ShapeA } from "@modules/assets/assets";
 import ScrollUp, { H1Stroke } from "@lib/util/misc";
 
 
@@ -16,10 +16,10 @@ export default async function Home() {
   
   <React.Fragment>
     
-         <div className="w-full h-auto min-h=[100vh] grid grid-cols-2 border=[3px] border-black">
+         <div className="w-full h-auto min-h=[100vh] grid grid-cols-2 border=[3px] border-black pt-[calc(var(--start)+55px)] sm:pt-0">
          <div className="col-span-1 relative hidden medium:block border-r-[3px] border-black" style={{backgroundColor: data.prime.hex}}>
-          <div className="w-full sticky top-0 p-6">
-            <LogoSolo fill={data.sec.hex} className="w-full h-auto" />
+          <div className="w-full h-[calc(100vh_-_55px)] sticky top-0 p-6">
+          <ShapeA fill="var(--green)" className="absolute top-0 left-0 w-full h-full z-0 object-fill" preserveAspectRatio="none"/>
           </div>
          </div>
          <div className="col-span-2 medium:col-span-1 min-h-[100dvh] " style={{backgroundColor: data.specs[0]?.prime.hex}}>

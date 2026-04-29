@@ -15,7 +15,7 @@ const ItemsTemplate = ({ cart }: ItemsTemplateProps) => {
     <div className="w-full ">
       
       <Table>
-        <Table.Header className=" border-[3px] border-black p-4 navHold h-[55px]">
+        <Table.Header className=" border-b-[3px] border-black p-4 navHold h-[55px]">
           <Table.Row className="px-6">
             <Table.HeaderCell className=" pl-6 ">Item</Table.HeaderCell>
             <Table.HeaderCell className=""></Table.HeaderCell>
@@ -23,7 +23,7 @@ const ItemsTemplate = ({ cart }: ItemsTemplateProps) => {
             <Table.HeaderCell className="hidden small:table-cell border-r-[3px] border-black">
               Price
             </Table.HeaderCell>
-            <Table.HeaderCell className="pr-6 text-right border-r-[3px] border-black">
+            <Table.HeaderCell className="pr-6 text-right  border-black">
               Total
             </Table.HeaderCell>
           </Table.Row>

@@ -75,12 +75,12 @@ const CartDropdown = ({
 
   return (
     <div
-      className="h-full z-50 isolate"
+      className="h-full z-50 isolatev fixed top-0 right-0 pr-6"
       onMouseEnter={openAndCancel}
       onMouseLeave={close}
     >
-      <Popover className="relative h-full">
-        <PopoverButton className="h-full">
+      <Popover className="relative h-[--55px] ">
+        <PopoverButton className="h-[55px] flex items-center justify-center">
           <LocalizedClientLink
             className="hover:text-ui-fg-base uppercase"
             href="/cart"
@@ -99,7 +99,7 @@ const CartDropdown = ({
         >
           <PopoverPanel
             static
-            className="  hidden small:block fixed top-[55px] right-0 bg-white border-x border-b border-gray-200 w-[420px] text-ui-fg-base"
+            className="  hidden small:block fixed top-[55px] right-0 bg-white border-[3px] border-black w-[420px] text-ui-fg-base"
             data-testid="nav-cart-dropdown"
           >
             <div className="p-4 flex items-center justify-center">
@@ -158,6 +158,7 @@ const CartDropdown = ({
                                 <LineItemPrice
                                   item={item}
                                   style="tight"
+                                  tight={true}
                                   currencyCode={cartState.currency_code}
                                 />
                               </div>

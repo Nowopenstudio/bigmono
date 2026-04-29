@@ -34,7 +34,7 @@ const Summary = ({ cart }: SummaryProps) => {
     
       <CartTotals totals={cart} />
       <LocalizedClientLink
-        className="small:absolute bottom-0 left-0 right-0 bg-[--red] border-[3px] border-black"
+        className="small:absolute bottom-0 left-0 right-0 bg-[--red] border-y-[3px] border-black"
         href={"/checkout?step=" + step}
         data-testid="checkout-button"
       >

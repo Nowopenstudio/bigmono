@@ -13,11 +13,11 @@ const CartTemplate = ({
   customer: HttpTypes.StoreCustomer | null
 }) => {
   return (
-    <div className="w-full">
+    <div className="w-full pt-[100px] sm:pt-[200px] ">
       <div className="w-full" data-testid="cart-container">
         {cart?.items?.length ? (
           <div className="w-full grid grid-cols-3 ">
-             <div className="col-span-3 items-center h-[55px]">
+             <div className="col-span-3 items-center">
                 {!customer && (
                   <>
                     <SignInPrompt />
@@ -29,7 +29,7 @@ const CartTemplate = ({
               <ItemsTemplate cart={cart} />
            </div>
             <div className="relative col-span-3 sm:col-span-1">
-              <div className="flex flex-col gap-y-8 sticky top-12 border-[3px] border-black">
+              <div className="flex flex-col gap-y-8 sticky top-12 border-x-[3px] border-black">
                 {cart && cart.region && (
                   <>
                     <div >

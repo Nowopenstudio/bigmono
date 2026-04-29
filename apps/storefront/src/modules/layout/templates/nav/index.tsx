@@ -11,6 +11,7 @@ import SideMenu from "@modules/layout/components/side-menu"
 import { Logo, ShapeA } from "@modules/assets/assets"
 import { MuxVideoBG } from "@lib/util/muxPlayer"
 import Banner from "./Banner"
+import NavTextTone from "./NavTextTone"
 
 export default async function Nav({cover}:any) {
   const [regions, locales, currentLocale] = await Promise.all([
@@ -21,14 +22,15 @@ export default async function Nav({cover}:any) {
 
   return (
     <React.Fragment>
-      <header className="h-16  w-full fixed top-0 z-50 group navHold text-white mix-blend-difference">
-        <nav className=" flex items-start justify-between w-full h-full px-6">
+      <NavTextTone>
+      <header className=" h-[55px]  w-full absolute top-0 z-50 group navHold">
+        <nav className=" flex h-full items-center justify-between w-full  pr-[124px] relative">
           
 
          
 
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
-            <div className="hidden small:flex items-center gap-x-6 h-full uppercase bg-blend-difference">
+            <div className="hidden small:flex items-center gap-x-6  uppercase bg-blend-difference ">
             <LocalizedClientLink
                 className="hover:text-ui-fg-base"
                 href="/products"
@@ -62,7 +64,7 @@ export default async function Nav({cover}:any) {
             <Suspense
               fallback={
                 <LocalizedClientLink
-                  className=" flex gap-2 uppercase"
+                  className=" flex gap-2 uppercase "
                   href="/cart"
                   data-testid="nav-cart-link"
                 >
@@ -76,6 +78,7 @@ export default async function Nav({cover}:any) {
         </nav>
 
       </header>
+      </NavTextTone>
       
             <Banner cover={cover} />
      
