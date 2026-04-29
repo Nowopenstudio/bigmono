@@ -57,7 +57,7 @@ html.lenis, html.lenis body {
   --green:#2aae5a;
   --yellow:#ffc801;
   --orange:#fd8026;
-  --paleBule:#80acd6;
+  --paleBlue:#80acd6;
   --white:#ffffff;
   --grey:#e7e7e7;
   --ash:#242424;
@@ -246,14 +246,47 @@ Button{
   
 }
 
-.mobileMenu{
-  display: none;
-  pointer-events: none;
+
+/* navbar */
+/* bars */
+.singleBar{
+  transform-origin:center;
+  transition: transform .25s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
+.opened .midBar{
+  transform: rotate(-45deg);
+}
+
+.opened .topBar{
+  transform: rotate(45deg) translate(7px,8px);
+}
+
+.opened .botBar{
+  transform:translate(-3px,-6px) scale(0,1);
+}
+
+
+
+.mobileMenu{
+  pointer-events: none;
+  transform:translateX(-100%);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+
 .mobileMenu.active{
-  display: block;
   pointer-events: auto;
+  transform:translateX(-35%);
+}
+
+.mainContainer{
+  padding-left:0;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.menuOn .mainContainer{
+  padding-left:43%;
 }
 
 @media (max-width: 1023px) {
@@ -285,27 +318,14 @@ Button{
   Button {
     height: 48px;
   }
+
+  .mobileMenu.active{
+ 
+    transform:translateX(-25%);
+  }
+
+  .menuOn .mainContainer{
+    padding-left:73%;
+  }
 }
-
-/* navbar */
-/* bars */
-.singleBar{
-  transform-origin:center;
-  transition: transform .25s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.opened .midBar{
-  transform: rotate(-45deg);
-}
-
-.opened .topBar{
-  transform: rotate(45deg) translate(7px,8px);
-}
-
-.opened .botBar{
-  transform:translate(-3px,-6px) scale(0,1);
-}
-
-
-
 

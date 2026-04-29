@@ -12,6 +12,7 @@ import { Logo, ShapeA } from "@modules/assets/assets"
 import { MuxVideoBG } from "@lib/util/muxPlayer"
 import Banner from "./Banner"
 import NavTextTone from "./NavTextTone"
+import { retrieveCart } from "@lib/data/cart"
 
 export default async function Nav({cover}:any) {
   const [regions, locales, currentLocale] = await Promise.all([
@@ -19,6 +20,8 @@ export default async function Nav({cover}:any) {
     listLocales(),
     getLocale(),
   ])
+
+  
 
   return (
     <React.Fragment>
@@ -68,7 +71,7 @@ export default async function Nav({cover}:any) {
                   href="/cart"
                   data-testid="nav-cart-link"
                 >
-                  CART (0)
+                  CART(0))
                 </LocalizedClientLink>
               }
             >
