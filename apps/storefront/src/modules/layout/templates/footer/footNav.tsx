@@ -41,10 +41,12 @@ export default function FootNav({cart}:any){
     return(
 
                 <React.Fragment>
-                   <div onClick={()=>menuToggle()} className={` flex uppercase items-center flex-col justify-between mobileBar  w-full h-full relative z-[1]  pointer-events-auto py-2 ${active?"opened":""}`}>
-                            <div className="w-full border-b-[3px] border-black h-[1px] singleBar topBar"></div>
-                            <div className="w-full  border-b-[3px] border-black h-[1px] singleBar midBar"></div>
-                            <div className="w-full border-b-[3px] border-black h-[1px] singleBar botBar"></div>
+                   <div onClick={()=>menuToggle()} className={` uppercase mobileBar w-full h-full relative z-[1]  pointer-events-auto  ${active?"opened":""}`}>
+                           <div className="w-full h-full relative px-2 py-4 flex flex-col justify-between items-center">
+                              <div className="w-full border-b-[3px] border-black h-[1px] singleBar topBar"></div>
+                              <div className="w-full  border-b-[3px] border-black h-[1px] singleBar midBar"></div>
+                              <div className="w-full border-b-[3px] border-black h-[1px] singleBar botBar"></div>
+                           </div>
                   </div>
                   <div className={`top-0 left-0 fixed h-[calc(100dvh-58px)] w-full small:w-3/4 medium:w-2/3 justify-between z-[210] mobileMenu bg-[--paleBlue] flex-col border-[--3px] border-black ${active?"active":""} flex items-end justify-end`}>
                          
@@ -89,7 +91,7 @@ export default function FootNav({cart}:any){
               </LocalizedClientLink>
               <LocalizedClientLink
               onClick={()=>closeMenu()}
-                  className="w-full py-4 flex items-center justify-center border-t-[3px] border-black bg-[--red]"
+                  className="w-full py-4 flex items-center justify-center border-t-[3px] border-black bg-[--paleBlue]"
                   href="/cart"
                   data-testid="nav-cart-link"
                 >

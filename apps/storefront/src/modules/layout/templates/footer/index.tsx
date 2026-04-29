@@ -23,7 +23,7 @@ export default async function Footer({data}:any) {
   return (
     <footer className="fixed z-[210] border-[--3px] left-0 bottom-0 h-[60px] navHold w-[100vw] bg-[--yellow] border-black flex items-center">
      <div className="w-auto flex h-full relative z-10">
-      <div className="h-full w-auto bg-[--red] aspect-square border-r-[3px] border-black p-2">
+      <div className="h-full w-auto bg-[--red] aspect-square border-r-[3px] border-black ">
       <FootNav cart={cart} />
       </div>
       <div className="bg-[--orange] max-w-full w-full h-full px-4 flex gap-6 justify-between items-center border-r-[3px] border-black relative z-10">
