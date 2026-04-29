@@ -233,7 +233,7 @@ Button{
   text-wrap: nowrap;
   overflow-x: hidden;
   max-width:0;
-  transition: all .5s cubic-bezier(0.4, 0, 0.4, 1);
+  transition: all .7s linear(0, 1.25, 1, 0.9, 1.04, 0.99, 1.005, 0.996, 1.001, 0.999, 1);
   width:auto
 }
 
@@ -243,6 +243,17 @@ Button{
 
 .bounce{
   transition: all 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+}
+
+.mobileMenu{
+  display: none;
+  pointer-events: none;
+}
+
+.mobileMenu.active{
+  display: block;
+  pointer-events: auto;
 }
 
 @media (max-width: 1023px) {
@@ -275,6 +286,26 @@ Button{
     height: 48px;
   }
 }
+
+/* navbar */
+/* bars */
+.singleBar{
+  transform-origin:center;
+  transition: transform .25s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.opened .midBar{
+  transform: rotate(-45deg);
+}
+
+.opened .topBar{
+  transform: rotate(45deg) translate(7px,8px);
+}
+
+.opened .botBar{
+  transform:translate(-3px,-6px) scale(0,1);
+}
+
 
 
 

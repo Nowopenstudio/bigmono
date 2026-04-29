@@ -6,6 +6,7 @@ import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
 import CTAScroll from "./ctaScroll"
+import FootNav from "./footNav"
 
 export default async function Footer({data}:any) {
   const { collections } = await listCollections({
@@ -14,9 +15,10 @@ export default async function Footer({data}:any) {
   const productCategories = await listCategories()
 
   return (
-    <footer className="fixed z-90 border-[--3px] left-0 bottom-0 h-[60px] navHold w-[100vw] bg-[--yellow] border-black flex items-center">
+    <footer className="fixed z-[210] border-[--3px] left-0 bottom-0 h-[60px] navHold w-[100vw] bg-[--yellow] border-black flex items-center">
      <div className="w-auto flex h-full relative z-10">
-      <div className="h-full w-auto bg-[--red] aspect-square border-r-[3px] border-black">
+      <div className="h-full w-auto bg-[--red] aspect-square border-r-[3px] border-black p-2">
+      <FootNav />
       </div>
       <div className="bg-[--orange] max-w-full w-full h-full px-4 flex gap-6 justify-between items-center border-r-[3px] border-black relative z-10">
       {data.footerLogo.map((item:any,i:number)=>{
