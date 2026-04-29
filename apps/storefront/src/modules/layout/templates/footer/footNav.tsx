@@ -55,7 +55,7 @@ export default function FootNav({cart}:any){
 
                                   </div>
                                   <LocalizedClientLink
-                className="w-full py-4 flex items-center justify-center border-t-[3px] border-black bg-[--yellow]"
+                className="w-full py-4 flex items-center justify-center border-t-[3px] border-black bg-[--red]"
                   onClick={()=>closeMenu()}
                 href="/products"
                 data-testid="nav-account-link "
@@ -64,7 +64,7 @@ export default function FootNav({cart}:any){
               </LocalizedClientLink>
               <LocalizedClientLink
                 onClick={()=>closeMenu()}
-                className="w-full py-4 flex items-center justify-center border-t-[3px] border-black bg-[--blue]"
+                className="w-full py-4 flex items-center justify-center border-t-[3px] border-black bg-[--white]"
                 href="/info"
                 data-testid="nav-account-link"
               >
@@ -72,7 +72,7 @@ export default function FootNav({cart}:any){
               </LocalizedClientLink>
               <a
               onClick={()=>closeMenu()}
-                className="w-full py-4 flex items-center justify-center border-t-[3px] border-black bg-[--teal]"
+                className="w-full py-4 flex items-center justify-center border-t-[3px] border-black bg-[--yellow]"
                 href="https://bigcaf.com/"
                 target="_blank"
                 data-testid="nav-account-link"
@@ -81,7 +81,7 @@ export default function FootNav({cart}:any){
               </a>
               <LocalizedClientLink
                 onClick={()=>closeMenu()}
-                className="w-full py-4 flex items-center justify-center border-t-[3px] border-black bg-[--green]"
+                className="w-full py-4 flex items-center justify-center border-t-[3px] border-black bg-[--orange]"
                 href="/account "
                 data-testid="nav-account-link"
               >
