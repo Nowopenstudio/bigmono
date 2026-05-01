@@ -4,7 +4,7 @@ import { listProducts } from "@lib/data/products"
 import { getRegion, listRegions } from "@lib/data/regions"
 import ProductTemplate from "@modules/products/templates"
 import { HttpTypes } from "@medusajs/types"
-import { client } from "../../../../../sanity/lib/client"
+import { client } from "@lib/util/sanity"
 
 
 type Props = {

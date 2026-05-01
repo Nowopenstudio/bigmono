@@ -5,6 +5,7 @@ import { animate, useMotionValue, motion } from "motion/react";
 import useMeasure from "react-use-measure";
 import { useEffect, useState } from "react";
 import { Star } from "@modules/assets/assets";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
 
 
 
@@ -31,43 +32,26 @@ export default function CTAScroll({data,time}:any) {
       <motion.div  className="flex left-0 items-center top-[0] z-[1 gap-4 w-max h-full navHold" ref={ref} style={{x:xTranslation,color:`black`}}>
           
         
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4 "><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-          <div  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></div>
-      
+          <LocalizedClientLink   href={`/${data.link}`} className="flex flex-shrink-0 items-center uppercase gap-4 "><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink >
+          <LocalizedClientLink   href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >
+          <LocalizedClientLink   href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >
+          <LocalizedClientLink  href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >
+          <LocalizedClientLink   href={`/${data.link}`} className="flex flex-shrink-0 items-center uppercase gap-4 "><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink >
+          <LocalizedClientLink   href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >
+          <LocalizedClientLink   href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >
+          <LocalizedClientLink  href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >   <LocalizedClientLink   href={`/${data.link}`} className="flex flex-shrink-0 items-center uppercase gap-4 "><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink >
+          <LocalizedClientLink   href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >
+          <LocalizedClientLink   href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >
+          <LocalizedClientLink  href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >   <LocalizedClientLink   href={`/${data.link}`} className="flex flex-shrink-0 items-center uppercase gap-4 "><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink >
+          <LocalizedClientLink   href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >
+          <LocalizedClientLink   href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >
+          <LocalizedClientLink  href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >   <LocalizedClientLink   href={`/${data.link}`} className="flex flex-shrink-0 items-center uppercase gap-4 "><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink >
+          <LocalizedClientLink   href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >
+          <LocalizedClientLink   href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >
+          <LocalizedClientLink  href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >   <LocalizedClientLink   href={`/${data.link}`} className="flex flex-shrink-0 items-center uppercase gap-4 "><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink >
+          <LocalizedClientLink   href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >
+          <LocalizedClientLink   href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >
+          <LocalizedClientLink  href={`/${data.link}`}  className="flex flex-shrink-0 items-center uppercase gap-4"><p>{data.text}</p><Star className="w-[26px] h-auto" fill={`lack`}/></LocalizedClientLink  >
        </motion.div>
   
 

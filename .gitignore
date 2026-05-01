@@ -22,6 +22,7 @@ coverage
 **/out/
 
 **/node_modules
+apps/storefront/sanity/
 
 
 # Production
