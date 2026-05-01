@@ -9,7 +9,7 @@ type ProductWidgetProps = {
   }
 }
 
-const SANITY_STUDIO_URL = "https://big-store.medusajs.app/studio"
+const SANITY_STUDIO_URL = import.meta.env.VITE_SANITY_STUDIO_URL || "http://localhost:8000/studio"
 
 const ProductSanityWidget = ({ data }: ProductWidgetProps) => {
   const [loading, setLoading] = useState(false)
