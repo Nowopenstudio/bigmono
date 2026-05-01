@@ -89,21 +89,26 @@ class SanityModuleService {
           _type: this.typeMap[SyncDocumentTypes.PRODUCT],
           _id: product.id,
           title: product.title,
+          handle: (product as any).handle ?? "",
           specs: [
             {
               _key: product.id,
               _type: "spec",
               title: product.title,
               lang: "en",
+              content: (product as any).description ?? "",
             },
           ],
         }
       }
-    
+
       private transformProductForUpdate = (product: ProductDTO) => {
         return {
           set: {
             title: product.title,
+            handle: (product as any).handle ?? "",
+            "specs[lang == \"en\"].title": product.title,
+            "specs[lang == \"en\"].content": (product as any).description ?? "",
           },
         }
       }
@@ -134,7 +139,19 @@ class SanityModuleService {
         data: SyncDocumentInputs<T>
       ) {
         const operations = this.updateTransformationMap[type](data)
-        return await this.client.patch(data.id, operations).commit()
+        const spec = {
+          _key: data.id,
+          _type: "spec",
+          title: data.title,
+          lang: "en",
+          content: (data as any).description ?? "",
+        }
+        return await this.client
+          .patch(data.id, {
+            setIfMissing: { specs: [spec] },
+            ...operations,
+          })
+          .commit()
       }
 
       async retrieve(id: string) {

@@ -39,6 +39,10 @@ export const syncStep = createStep(
         fields: [
           "id",
           "title",
+          "description",
+          "handle",
+          "status",
+          "thumbnail",
           "sanity_product.*",
         ],
         filters,
