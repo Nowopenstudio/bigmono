@@ -1,6 +1,6 @@
 import { defineWidgetConfig } from "@medusajs/admin-sdk"
 import { Button, Container, Heading, Text, toast } from "@medusajs/ui"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 type ProductWidgetProps = {
   data: {
@@ -9,10 +9,16 @@ type ProductWidgetProps = {
   }
 }
 
-const SANITY_STUDIO_URL = import.meta.env.VITE_SANITY_STUDIO_URL || "http://localhost:8000/studio"
-
 const ProductSanityWidget = ({ data }: ProductWidgetProps) => {
   const [loading, setLoading] = useState(false)
+  const [studioUrl, setStudioUrl] = useState<string | null>(null)
+
+  useEffect(() => {
+    fetch("/admin/sanity/config", { credentials: "include" })
+      .then((r) => r.json())
+      .then((cfg) => setStudioUrl(`${cfg.studio_url}/structure/product;${data.id}`))
+      .catch(() => {})
+  }, [data.id])
 
   const handleSync = async () => {
     setLoading(true)
@@ -39,8 +45,6 @@ const ProductSanityWidget = ({ data }: ProductWidgetProps) => {
     }
   }
 
-  const studioUrl = `${SANITY_STUDIO_URL}/structure/product;${data.id}`
-
   return (
     <Container>
       <div className="flex flex-col gap-4">
@@ -57,11 +61,13 @@ const ProductSanityWidget = ({ data }: ProductWidgetProps) => {
           >
             Sync to Sanity
           </Button>
-          <a href={studioUrl} target="_blank" rel="noreferrer">
-            <Button variant="transparent" size="small">
-              Open in Studio ↗
-            </Button>
-          </a>
+          {studioUrl && (
+            <a href={studioUrl} target="_blank" rel="noreferrer">
+              <Button variant="transparent" size="small">
+                Open in Studio ↗
+              </Button>
+            </a>
+          )}
         </div>
       </div>
     </Container>
