@@ -25,7 +25,9 @@ export default function FootNav({cart}:any){
             }
           }, [active])
 
-
+useEffect(()=>{
+  closeMenu();
+},[page])
           const menuToggle = () =>{
             setActive(!active)
             
