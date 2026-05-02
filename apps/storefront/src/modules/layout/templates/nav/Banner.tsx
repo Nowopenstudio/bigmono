@@ -19,12 +19,8 @@ export default function Banner({cover}:any) {
   const { countryCode,handle } = useParams<{ countryCode: string, handle: string }>()
   const {winX, winY, mobile} = useResize()
   const [scrollY, setScroll]=useState<number>(0)
-  const [scrollPercent, setPer]=useState(0)
-  const [compact, setCompact] = useState(false)
   const [condense, setCondense] = useState(false)
-  const [pro,setPro] = useState(false) 
-  const [mobilePro,setMobilePro] = useState(false)
-  const [mobileMenu, setMobileMenu] = useState(false)
+
   
   const lenis = useLenis(({scroll, dimensions }) => {
    
@@ -53,7 +49,7 @@ export default function Banner({cover}:any) {
 
 <ReactLenis root>
   {cover && page === `/${countryCode}` ?(
-      <div className="w-[100vw] h-[500px] grid grid-cols-12 left-0 border-black border-[3px] relative navHold">
+      <div className="w-full h-[500px] grid grid-cols-12 left-0 border-black border-[3px] relative navHold">
               
               <LocalizedClientLink
                 href="/"

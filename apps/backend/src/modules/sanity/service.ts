@@ -90,6 +90,7 @@ class SanityModuleService {
           _id: product.id,
           title: product.title,
           handle: (product as any).handle ?? "",
+          thumbnail: (product as any).thumbnail ?? null,
           specs: [
             {
               _key: product.id,
@@ -107,6 +108,7 @@ class SanityModuleService {
           set: {
             title: product.title,
             handle: (product as any).handle ?? "",
+            thumbnail: (product as any).thumbnail ?? null,
             "specs[lang == \"en\"].title": product.title,
             "specs[lang == \"en\"].content": (product as any).description ?? "",
           },
