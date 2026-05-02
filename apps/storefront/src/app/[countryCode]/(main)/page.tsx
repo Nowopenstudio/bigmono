@@ -19,7 +19,7 @@ export default async function Home(props: {
   const params = await props.params
 
   const query = await getData(`{
-    'data':*[_type=='settings'][0]{feat[]->{title,handle,prime,"cover":cover.asset->url}}
+    'data':*[_type=='settings'][0]{feat[]->{title,handle,prime,"cover":cover.asset->url,thumbnail}}
     }`)
   const {data} = query.data  
 

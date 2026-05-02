@@ -241,6 +241,15 @@ Button{
   max-width:300px;
 }
 
+.fullBody{
+  transform-origin: center center;
+  transition: all 0.5s linear(0, 1.25, 1, 0.9, 1.04, 0.99, 1.005, 0.996, 1.001, 0.999, 1);
+  transform: scale(1);
+}
+
+.singleProduct:hover .fullBody{
+  transform: scale(1.2);}
+
 .bounce{
   transition: all 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   
@@ -289,6 +298,20 @@ Button{
   padding-left:43%;
 }
 
+.fadeIn{
+  opacity:0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 0.1s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @media (max-width: 1023px) {
   h1,
   h2 {
