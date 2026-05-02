@@ -55,7 +55,7 @@ const Hero = ({ data }: { data: any }) => {
         <LocalizedClientLink
           key={i}
           href={`/products/${item.handle}`}
-          ref={(el) => { itemRefs.current[i] = el }}
+          ref={(el: any) => { itemRefs.current[i] = el }}
           className="col-span-1 flex justify-center items-center aspect-[3/4] singleProduct "
           style={{ transformOrigin: "center bottom" }}
         >
