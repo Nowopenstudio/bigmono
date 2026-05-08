@@ -5,6 +5,7 @@ import { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Thumbnail from "../thumbnail"
 import PreviewPrice from "./price"
+import { ViewActive } from "@lib/util/viewActive"
 
 export default async function ProductPreview({
   product,
@@ -30,7 +31,7 @@ export default async function ProductPreview({
 
   return (
     <LocalizedClientLink href={`/products/${product.handle}`} >
-      <div data-testid="product-wrapper" className="relative singleProduct">
+      <ViewActive data-testid="product-wrapper" styleSet="relative singleProduct">
         <Thumbnail
           thumbnail={product.thumbnail}
           images={product.images}
@@ -56,7 +57,7 @@ export default async function ProductPreview({
          </div>
         
         </div>
-      </div>
+      </ViewActive>
     </LocalizedClientLink>
   )
 }

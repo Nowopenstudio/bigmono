@@ -237,7 +237,7 @@ Button{
   width:auto
 }
 
-.singleProduct:hover .viewButton{
+.itemActive .viewButton,.singleProduct:hover .viewButton{
   max-width:300px;
 }
 
@@ -344,11 +344,11 @@ Button{
 
   .mobileMenu.active{
  
-    transform:translateX(-25%);
+    transform:translateX(0%);
   }
 
   .menuOn .mainContainer{
-    padding-left:73%;
+    padding-left:100%;
   }
 }
 

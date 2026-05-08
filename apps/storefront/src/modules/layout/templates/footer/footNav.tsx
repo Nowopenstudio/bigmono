@@ -52,7 +52,7 @@ useEffect(()=>{
                   </div>
                   <div className={`top-0 left-0 fixed h-[calc(100dvh-58px)] w-full small:w-3/4 medium:w-2/3 justify-between z-[210] mobileMenu bg-[--paleBlue] flex-col border-[--3px] border-black ${active?"active":""} flex items-end justify-end`}>
                          
-                                  <div className="mobileInfo flex-col flex w-5/6 small:w-2/3 h-full  justify-end border-l-[3px] border-black">
+                                  <div className="mobileInfo flex-col flex w-full small:w-2/3 h-full  justify-end border-l-[3px] border-black">
                                   <div className="h-auto w-full relative flex-grow-[10] ">
                                   <ShapeA fill="#2aae5a" className="absolute top-0 left-0 w-full h-full z-0 object-fill" preserveAspectRatio="none"/>
                                   <LogoSolo fill="#000000" className="absolute top-0 left-0 w-full h-full z-0 object-fill" preserveAspectRatio="none"/>
@@ -83,14 +83,14 @@ useEffect(()=>{
               >
                <h4> Festival</h4>
               </a>
-              <LocalizedClientLink
+              {/* <LocalizedClientLink
                 onClick={()=>closeMenu()}
                 className="w-full py-4 flex items-center justify-center border-t-[3px] border-black bg-[--orange]"
                 href="/account "
                 data-testid="nav-account-link"
               >
                <h4> Account</h4>
-              </LocalizedClientLink>
+              </LocalizedClientLink> */}
               <LocalizedClientLink
               onClick={()=>closeMenu()}
                   className="w-full py-4 flex items-center justify-center border-t-[3px] border-black bg-[--paleBlue]"

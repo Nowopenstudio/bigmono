@@ -56,13 +56,13 @@ export default async function Nav({cover}:any) {
               >
                 Festival
               </a>
-              <LocalizedClientLink
+              {/* <LocalizedClientLink
                 className="hover:text-ui-fg-base"
                 href="/account"
                 data-testid="nav-account-link"
               >
                 Account
-              </LocalizedClientLink>
+              </LocalizedClientLink> */}
             </div>
             <Suspense
               fallback={

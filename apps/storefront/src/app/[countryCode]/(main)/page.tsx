@@ -5,7 +5,7 @@ import Hero from "@modules/home/components/hero"
 import { listCollections } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 import { getData } from "@lib/util/sanity"
-
+import HeroGrid from "@modules/home/components/hero/grid"
 export const metadata: Metadata = {
   title: "Medusa Next.js Starter Template",
   description:
@@ -19,7 +19,7 @@ export default async function Home(props: {
   const params = await props.params
 
   const query = await getData(`{
-    'data':*[_type=='settings'][0]{feat[]->{title,handle,prime,"cover":cover.asset->url,thumbnail}}
+    'data':*[_type=='settings'][0]{feat[]->{title,handle,prime,"cover":cover.asset->url,thumbnail,hero}}
     }`)
   const {data} = query.data  
 
@@ -38,7 +38,8 @@ export default async function Home(props: {
 
   return (
     <>
-      <Hero data={data.feat} />
+      {data.hero?<Hero data={data.feat} />:
+      <HeroGrid data={data.feat} />}
       <div className="pb-[55px]">
         
       </div>
