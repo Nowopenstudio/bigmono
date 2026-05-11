@@ -20,7 +20,7 @@ const ProductInfo = ({ product, sanity }: ProductInfoProps) => {
             {product.collection.title}
           </LocalizedClientLink>
         )}
-        <H3Stroke text={product.title} color={"#000000"} bg={sanity.prime?.hex || "#FE97DB"} />
+        <H3Stroke text={product.title} color={"#000000"} bg={sanity?.prime? sanity.prime.hex : "#FE97DB"} />
         
          
 
