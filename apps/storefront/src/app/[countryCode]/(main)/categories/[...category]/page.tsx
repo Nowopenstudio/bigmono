@@ -80,15 +80,22 @@ export default async function CategoryPage(props: Props) {
   const params = await props.params
   const { sortBy, page } = searchParams
 
-  const productCategory = await getCategoryByHandle(params.category)
+  const [productCategory, categoryList] = await Promise.all([
+    getCategoryByHandle(params.category),
+    listCategories(),
+  ])
 
   if (!productCategory) {
     notFound()
   }
 
+  const rootCategories =
+    categoryList?.filter((c) => !c.parent_category) ?? categoryList ?? []
+
   return (
     <CategoryTemplate
       category={productCategory}
+      categories={rootCategories.length ? rootCategories : categoryList ?? []}
       sortBy={sortBy}
       page={page}
       countryCode={params.countryCode}

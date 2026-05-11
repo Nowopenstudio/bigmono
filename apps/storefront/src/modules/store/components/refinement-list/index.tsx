@@ -1,17 +1,29 @@
 "use client"
 
+import { HttpTypes } from "@medusajs/types"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useCallback } from "react"
 
+import CategoryTypes from "./category-types"
 import SortProducts, { SortOptions } from "./sort-products"
 
 type RefinementListProps = {
   sortBy: SortOptions
   search?: boolean
-  'data-testid'?: string
+  "data-testid"?: string
+  /** Product categories from Medusa (`listCategories()`). Renders a category navigation strip when provided. */
+  categories?: HttpTypes.StoreProductCategory[]
+  activeCategoryId?: string
+  "data-testid-category-types"?: string
 }
 
-const RefinementList = ({ sortBy, 'data-testid': dataTestId }: RefinementListProps) => {
+const RefinementList = ({
+  sortBy,
+  categories,
+  activeCategoryId,
+  "data-testid": dataTestId,
+  "data-testid-category-types": categoryTypesTestId,
+}: RefinementListProps) => {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -32,7 +44,14 @@ const RefinementList = ({ sortBy, 'data-testid': dataTestId }: RefinementListPro
   } 
 
   return (
-    <div className="flex  border=b-[3px] border-black">
+    <div className="flex flex-col border-b-[3px] border-black">
+      {categories && categories.length > 0 && (
+        <CategoryTypes
+          categories={categories}
+          activeCategoryId={activeCategoryId}
+          data-testid={categoryTypesTestId}
+        />
+      )}
       <SortProducts sortBy={sortBy} setQueryParams={setQueryParams} data-testid={dataTestId} />
     </div>
   )
