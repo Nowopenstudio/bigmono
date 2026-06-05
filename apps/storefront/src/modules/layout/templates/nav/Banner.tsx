@@ -34,7 +34,7 @@ export default function Banner({ cover }: any) {
   const page = usePathname()
   const { countryCode, handle } = useParams<{ countryCode: string; handle: string }>()
 
-  const isCondensed = Boolean(handle || page.includes("/cart") || page.includes("/account"))
+  const isCondensed = Boolean(handle || page.includes("/cart") || page.includes("/account") || page.includes("/order") )
 
   const maxLogoPx = useSyncExternalStore(
     subscribeWindowResize,
