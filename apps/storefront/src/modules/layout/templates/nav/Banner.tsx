@@ -69,10 +69,10 @@ export default function Banner({ cover }: any) {
   return (
     <ReactLenis root>
       {cover && page === `/${countryCode}` && (
-        <div className="w-full h-[50svh] small:h-[500px] grid grid-cols-12 left-0 border-black border-[3px] relative navHold">
+        <div className="w-full h-[75svh] small:h-[500px] grid grid-cols-12 left-0 border-black border-[3px] relative navHold">
           <LocalizedClientLink
             href="/"
-            className="col-span-12 small:col-span-6 border-r-[3px] border-black uppercase bg-[--blue] relative overflow-hidden p-8 h-auto"
+            className="col-span-12 small:col-span-6 border-r-[3px] border-black uppercase bg-[--blue] relative overflow-hidden p-2sm:p-8 h-auto"
             data-testid="nav-store-link"
           >
             <ShapeA
