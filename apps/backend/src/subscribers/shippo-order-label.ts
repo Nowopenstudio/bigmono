@@ -176,6 +176,7 @@ export default async function shippoOrderLabelSubscriber({
   const shippoModule: ShippoModuleService = container.resolve(SHIPPO_MODULE)
 
   if (!shippoModule.isEnabled()) {
+    logger.warn("[Shippo] Skipping label creation: SHIPPO_API_KEY is not set")
     return
   }
 
