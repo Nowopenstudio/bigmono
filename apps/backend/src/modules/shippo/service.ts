@@ -197,7 +197,9 @@ class ShippoModuleService {
 
   private stripNulls(obj: Record<string, unknown>): Record<string, unknown> {
     return Object.fromEntries(
-      Object.entries(obj).filter(([, v]) => v != null && v !== "")
+      Object.entries(obj)
+        .map(([k, v]) => [k, typeof v === "string" ? v.trim() : v])
+        .filter(([, v]) => v != null && v !== "")
     )
   }
 
@@ -209,7 +211,7 @@ class ShippoModuleService {
       street1: shipping.address_1,
       street2: shipping.address_2,
       city: shipping.city,
-      state: shipping.province,
+      state: shipping.province?.toUpperCase(),
       zip: shipping.postal_code,
       country: (shipping.country_code || "").toUpperCase(),
       phone: shipping.phone,
