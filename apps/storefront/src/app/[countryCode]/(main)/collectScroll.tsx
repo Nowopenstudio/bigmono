@@ -8,7 +8,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 
 const ITEM_COUNT = 20
 
-export default function CTAScroll({ data, time }: any) {
+export default function CollectScroll({ data, time }: any) {
   const [ref, { width }] = useMeasure()
   const xTranslation = useMotionValue(0)
 
@@ -30,29 +30,16 @@ export default function CTAScroll({ data, time }: any) {
       className="flex left-0 items-center top-[0] z-[1] gap-4 w-max h-full navHold"
       style={{ x: xTranslation, color: "black" }}
     >
-      {data.link?(
-        Array.from({ length: ITEM_COUNT }).map((_, i) => (
+      { Array.from({ length: ITEM_COUNT }).map((_, i) => (
           <LocalizedClientLink
             key={i}
-            href={`/${data.link}`}
+            href={`/products`}
             className="flex flex-shrink-0 items-center uppercase gap-4"
           >
-            <p>{data.text}</p>
+            <h4>{data.text}</h4>
             <Star className="w-[26px] h-auto" fill="black" />
           </LocalizedClientLink>
-        ))
-      ):(
-        Array.from({ length: ITEM_COUNT }).map((_, i) => (
-          <div
-            key={i}
-            
-            className="flex flex-shrink-0 items-center uppercase gap-4"
-          >
-            <p>{data.text}</p>
-            <Star className="w-[26px] h-auto" fill="black" />
-          </div>
-        ))
-      )}
+        ))}
       
     </motion.div>
   )

@@ -22,7 +22,7 @@ export default async function resendOrderShippedSubscriber({
   // shipment.id is a fulfillment id — find the order through it
   const { data: fulfillments } = await query.graph({
     entity: "fulfillment",
-    fields: ["id", "order.id", "order.display_id", "order.email", "order.currency_code", "tracking_links.*"],
+    fields: ["id", "order.id", "order.display_id", "order.email", "order.currency_code", "order.total", "order.tax_total", "order.shipping_total", "tracking_links.*"],
     filters: { id: data.id },
   })
 

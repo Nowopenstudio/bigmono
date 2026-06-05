@@ -23,6 +23,8 @@ export default async function resendOrderPlacedSubscriber({
       "currency_code",
       "total",
       "items.*",
+      "tax_total",
+      "shipping_total",
     ],
     filters: { id: data.id },
   })

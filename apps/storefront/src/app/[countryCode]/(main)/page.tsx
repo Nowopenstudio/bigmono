@@ -6,11 +6,8 @@ import { listCollections } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 import { getData } from "@lib/util/sanity"
 import HeroGrid from "@modules/home/components/hero/grid"
-export const metadata: Metadata = {
-  title: "Medusa Next.js Starter Template",
-  description:
-    "A performant frontend ecommerce starter template with Next.js 15 and Medusa.",
-}
+import CollectScroll from "./collectScroll"
+
 
 
 export default async function Home(props: {
@@ -40,9 +37,38 @@ export default async function Home(props: {
     <>
       {data.hero?<Hero data={data.feat} />:
       <HeroGrid data={data.feat} />}
+      
       <div className="pb-[55px]">
-        
+      <div className="h-[55px] bg-[--red] relative overflow-hidden  border-black border-t-[3px]">
+        <CollectScroll data={{text:"View Full Collection"}} time={20} />
+      </div>
       </div>
     </>
   )
+}
+
+
+
+export async function generateMetadata() {
+  const query = await getData(`{
+    'data':*[_type=='settings'][0]{meta{title,description,keywords,"image":image.asset->url}}
+ }`)
+ const {data} = query.data  
+  return {
+    title: `${data.meta.title}`,
+    keywords: `${data.meta.keywords}`,
+    description:`${data.meta.description}`,
+    openGraph: {
+      images: `${data.meta.image}?auto=format&amp;w=1200`,
+      url:`/`,
+      type:'website',
+    },
+    twitter:{
+      site:`@UniswapFND`,
+      card: "summary_large_image"
+    },
+    alternates: {
+        canonical: '/',
+      }
+  };
 }

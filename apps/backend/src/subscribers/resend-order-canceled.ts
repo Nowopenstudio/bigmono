@@ -16,7 +16,7 @@ export default async function resendOrderCanceledSubscriber({
 
   const { data: orders } = await query.graph({
     entity: "order",
-    fields: ["id", "display_id", "email", "currency_code", "total", "items.*"],
+    fields: ["id", "display_id", "email", "currency_code", "total", "items.*", "tax_total", "shipping_total"],
     filters: { id: data.id },
   })
 

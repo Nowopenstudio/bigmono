@@ -113,6 +113,8 @@ class ResendNotificationService extends AbstractNotificationProviderService {
     const items: Array<Record<string, any>> = order?.items ?? []
     const total = order?.total != null ? (order.total / 100).toFixed(2) : "0.00"
     const currency = (order?.currency_code ?? "usd").toUpperCase()
+    const shipping = order?.shipping_total != null ? (order.shipping_total / 100).toFixed(2) : "0.00"
+    const tax = order?.tax_total != null ? (order.tax_total / 100).toFixed(2) : "0.00"
 
     return {
       subject: `Order Confirmation #${displayId}`,
@@ -129,6 +131,14 @@ class ResendNotificationService extends AbstractNotificationProviderService {
           </thead>
           <tbody>${this.orderItemRows(items, currency)}</tbody>
           <tfoot>
+            <tr>
+              <td colspan="2" style="padding:8px;text-align:right">Shipping</td>
+              <td style="padding:8px;text-align:right">${currency} ${shipping}</td>
+            </tr>
+            <tr>
+              <td colspan="2" style="padding:8px;text-align:right">Tax</td>
+              <td style="padding:8px;text-align:right">${currency} ${tax}</td>
+            </tr>
             <tr>
               <td colspan="2" style="padding:8px;text-align:right;font-weight:bold">Total</td>
               <td style="padding:8px;text-align:right;font-weight:bold">${currency} ${total}</td>
@@ -149,12 +159,33 @@ class ResendNotificationService extends AbstractNotificationProviderService {
       ? `<p>Track your package:</p><ul>${trackingLinks.map((t) => `<li><a href="${t.url ?? "#"}">${t.tracking_number ?? t.url ?? "Track"}</a></li>`).join("")}</ul>`
       : ""
 
+    const total = order?.total != null ? (order.total / 100).toFixed(2) : "0.00"
+    const currency = (order?.currency_code ?? "usd").toUpperCase()
+    const shipping = order?.shipping_total != null ? (order.shipping_total / 100).toFixed(2) : "0.00"
+    const tax = order?.tax_total != null ? (order.tax_total / 100).toFixed(2) : "0.00"
+
     return {
       subject: `Your order #${displayId} has shipped`,
       html: this.wrap(`
         <h1 style="font-size:24px;margin-bottom:8px">Your order is on its way!</h1>
         <p style="color:#555">Order <strong>#${displayId}</strong> has been shipped.</p>
         ${trackingHtml}
+        <table style="width:100%;border-collapse:collapse;margin-top:16px">
+          <tfoot>
+            <tr>
+              <td colspan="2" style="padding:8px;text-align:right">Shipping</td>
+              <td style="padding:8px;text-align:right">${currency} ${shipping}</td>
+            </tr>
+            <tr>
+              <td colspan="2" style="padding:8px;text-align:right">Tax</td>
+              <td style="padding:8px;text-align:right">${currency} ${tax}</td>
+            </tr>
+            <tr>
+              <td colspan="2" style="padding:8px;text-align:right;font-weight:bold">Total</td>
+              <td style="padding:8px;text-align:right;font-weight:bold">${currency} ${total}</td>
+            </tr>
+          </tfoot>
+        </table>
       `),
     }
   }
@@ -164,13 +195,31 @@ class ResendNotificationService extends AbstractNotificationProviderService {
     const displayId = order?.display_id ?? ""
     const total = order?.total != null ? (order.total / 100).toFixed(2) : "0.00"
     const currency = (order?.currency_code ?? "usd").toUpperCase()
+    const shipping = order?.shipping_total != null ? (order.shipping_total / 100).toFixed(2) : "0.00"
+    const tax = order?.tax_total != null ? (order.tax_total / 100).toFixed(2) : "0.00"
 
     return {
       subject: `Your order #${displayId} has been canceled`,
       html: this.wrap(`
         <h1 style="font-size:24px;margin-bottom:8px">Order Canceled</h1>
-        <p style="color:#555">Order <strong>#${displayId}</strong> (${currency} ${total}) has been canceled.</p>
-        <p style="color:#555">If you have any questions, please contact our support team.</p>
+        <p style="color:#555">Order <strong>#${displayId}</strong> has been canceled.</p>
+        <table style="width:100%;border-collapse:collapse;margin-top:16px">
+          <tfoot>
+            <tr>
+              <td colspan="2" style="padding:8px;text-align:right">Shipping</td>
+              <td style="padding:8px;text-align:right">${currency} ${shipping}</td>
+            </tr>
+            <tr>
+              <td colspan="2" style="padding:8px;text-align:right">Tax</td>
+              <td style="padding:8px;text-align:right">${currency} ${tax}</td>
+            </tr>
+            <tr>
+              <td colspan="2" style="padding:8px;text-align:right;font-weight:bold">Total</td>
+              <td style="padding:8px;text-align:right;font-weight:bold">${currency} ${total}</td>
+            </tr>
+          </tfoot>
+        </table>
+        <p style="color:#555;margin-top:16px">If you have any questions, please contact our support team.</p>
       `),
     }
   }

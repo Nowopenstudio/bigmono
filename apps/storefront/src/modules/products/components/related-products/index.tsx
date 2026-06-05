@@ -48,7 +48,7 @@ export default async function RelatedProducts({
   }
 
   return (
-    <div className="product">
+    <div className="product pb-[55px]">
       <div className="w-full h-[55px] bg-[--green] relative overflow-hidden  border-black border-b-[3px]">
          <CTAScroll data={{text:"Related products"}} time={20}/>
       </div>
