@@ -216,14 +216,19 @@ class ShippoModuleService {
       email: order.email,
     })
 
+    const resolvedAddressFrom = this.stripNulls(
+      addressFrom
+        ? { ...this.defaultAddressFrom, ...addressFrom } as Record<string, unknown>
+        : this.defaultAddressFrom as unknown as Record<string, unknown>
+    )
+
+    this.logger.info(`[Shippo] address_from: ${JSON.stringify(resolvedAddressFrom)}`)
+    this.logger.info(`[Shippo] address_to: ${JSON.stringify(addressTo)}`)
+
     return await this.shippoRequest<ShippoShipmentResponse>("/shipments/", {
       method: "POST",
       body: {
-        address_from: this.stripNulls(
-          addressFrom
-            ? { ...this.defaultAddressFrom, ...addressFrom } as Record<string, unknown>
-            : this.defaultAddressFrom as unknown as Record<string, unknown>
-        ),
+        address_from: resolvedAddressFrom,
         address_to: addressTo,
         parcels: [this.parcelDefaults],
         async: false,
