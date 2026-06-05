@@ -18,7 +18,7 @@ const ItemsTemplate = ({ cart }: ItemsTemplateProps) => {
         <Table.Header className=" border-b-[3px] border-black p-4 navHold h-[55px]">
           <Table.Row className="px-6">
             <Table.HeaderCell className=" pl-6 ">Item</Table.HeaderCell>
-            <Table.HeaderCell className=""></Table.HeaderCell>
+            <Table.HeaderCell className=" hidden sm:block"></Table.HeaderCell>
             <Table.HeaderCell className="border-x-[3px] border-black">Quantity</Table.HeaderCell>
             <Table.HeaderCell className="hidden small:table-cell border-r-[3px] border-black">
               Price

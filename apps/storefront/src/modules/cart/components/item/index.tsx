@@ -64,7 +64,7 @@ const Item =  ({ item, type = "full", currencyCode }: ItemProps) => {
         </LocalizedClientLink>
       </Table.Cell>
 
-      <Table.Cell className="text-left">
+      <Table.Cell className="text-left hidden sm:block">
         <Text
           className=" w-full"
           data-testid="product-title"
