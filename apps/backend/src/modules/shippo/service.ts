@@ -214,7 +214,6 @@ class ShippoModuleService {
       country: (shipping.country_code || "").toUpperCase(),
       phone: shipping.phone,
       email: order.email,
-      validate: true,
     })
 
     return await this.shippoRequest<ShippoShipmentResponse>("/shipments/", {

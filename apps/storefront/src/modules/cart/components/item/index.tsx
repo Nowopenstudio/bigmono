@@ -12,7 +12,6 @@ import LineItemUnitPrice from "@modules/common/components/line-item-unit-price"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Spinner from "@modules/common/icons/spinner"
 import Thumbnail from "@modules/products/components/thumbnail"
-import { client } from "sanity/lib/client"
 import { useState } from "react"
 
 type ItemProps = {
