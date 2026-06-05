@@ -222,8 +222,8 @@ class ShippoModuleService {
         : this.defaultAddressFrom as unknown as Record<string, unknown>
     )
 
-    this.logger.info(`[Shippo] address_from: ${JSON.stringify(resolvedAddressFrom)}`)
-    this.logger.info(`[Shippo] address_to: ${JSON.stringify(addressTo)}`)
+    this.logger.warn(`[Shippo] address_from: ${JSON.stringify(resolvedAddressFrom)}`)
+    this.logger.warn(`[Shippo] address_to: ${JSON.stringify(addressTo)}`)
 
     return await this.shippoRequest<ShippoShipmentResponse>("/shipments/", {
       method: "POST",
