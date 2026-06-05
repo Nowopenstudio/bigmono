@@ -220,7 +220,7 @@ class ShippoModuleService {
 
     const resolvedAddressFrom = this.stripNulls(
       addressFrom
-        ? { ...this.defaultAddressFrom, ...addressFrom } as Record<string, unknown>
+        ? { ...this.defaultAddressFrom as unknown as Record<string, unknown>, ...this.stripNulls(addressFrom as unknown as Record<string, unknown>) }
         : this.defaultAddressFrom as unknown as Record<string, unknown>
     )
 
