@@ -36,7 +36,7 @@ export default function CollectScroll({ data, time }: any) {
             href={`/products`}
             className="flex flex-shrink-0 items-center uppercase gap-4"
           >
-            <h4>{data.text}</h4>
+            <p>{data.text}</p>
             <Star className="w-[26px] h-auto" fill="black" />
           </LocalizedClientLink>
         ))}
