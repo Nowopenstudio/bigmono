@@ -214,7 +214,9 @@ class ShippoModuleService {
     return await this.shippoRequest<ShippoShipmentResponse>("/shipments/", {
       method: "POST",
       body: {
-        address_from: addressFrom || this.defaultAddressFrom,
+        address_from: addressFrom
+          ? { ...this.defaultAddressFrom, ...addressFrom }
+          : this.defaultAddressFrom,
         address_to: addressTo,
         parcels: [this.parcelDefaults],
         async: false,
