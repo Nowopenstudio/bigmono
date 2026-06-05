@@ -195,9 +195,15 @@ class ShippoModuleService {
     })
   }
 
+  private stripNulls(obj: Record<string, unknown>): Record<string, unknown> {
+    return Object.fromEntries(
+      Object.entries(obj).filter(([, v]) => v != null && v !== "")
+    )
+  }
+
   private async createShipment(order: OrderInput, addressFrom?: ShippoAddress) {
     const shipping = order.shipping_address!
-    const addressTo = {
+    const addressTo = this.stripNulls({
       name: `${shipping.first_name || ""} ${shipping.last_name || ""}`.trim(),
       company: shipping.company,
       street1: shipping.address_1,
@@ -209,14 +215,16 @@ class ShippoModuleService {
       phone: shipping.phone,
       email: order.email,
       validate: true,
-    }
+    })
 
     return await this.shippoRequest<ShippoShipmentResponse>("/shipments/", {
       method: "POST",
       body: {
-        address_from: addressFrom
-          ? { ...this.defaultAddressFrom, ...addressFrom }
-          : this.defaultAddressFrom,
+        address_from: this.stripNulls(
+          addressFrom
+            ? { ...this.defaultAddressFrom, ...addressFrom } as Record<string, unknown>
+            : this.defaultAddressFrom as unknown as Record<string, unknown>
+        ),
         address_to: addressTo,
         parcels: [this.parcelDefaults],
         async: false,
