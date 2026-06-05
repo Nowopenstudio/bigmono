@@ -101,7 +101,7 @@ class ResendNotificationService extends AbstractNotificationProviderService {
           `<tr>
             <td style="padding:8px;border-bottom:1px solid #eee">${item.title ?? ""}</td>
             <td style="padding:8px;border-bottom:1px solid #eee;text-align:center">${item.quantity ?? 1}</td>
-            <td style="padding:8px;border-bottom:1px solid #eee;text-align:right">${currency} ${((item.unit_price ?? 0) / 100).toFixed(2)}</td>
+            <td style="padding:8px;border-bottom:1px solid #eee;text-align:right">${currency} ${Number(item.unit_price ?? 0).toFixed(2)}</td>
           </tr>`
       )
       .join("")
@@ -111,10 +111,10 @@ class ResendNotificationService extends AbstractNotificationProviderService {
     const order = data.order as Record<string, any> | undefined
     const displayId = order?.display_id ?? ""
     const items: Array<Record<string, any>> = order?.items ?? []
-    const total = order?.total != null ? (order.total / 100).toFixed(2) : "0.00"
+    const total = order?.total != null ? Number(order.total).toFixed(2) : "0.00"
     const currency = (order?.currency_code ?? "usd").toUpperCase()
-    const shipping = order?.shipping_total != null ? (order.shipping_total / 100).toFixed(2) : "0.00"
-    const tax = order?.tax_total != null ? (order.tax_total / 100).toFixed(2) : "0.00"
+    const shipping = order?.shipping_total != null ? Number(order.shipping_total).toFixed(2) : "0.00"
+    const tax = order?.tax_total != null ? Number(order.tax_total).toFixed(2) : "0.00"
 
     return {
       subject: `Order Confirmation #${displayId}`,
@@ -159,10 +159,10 @@ class ResendNotificationService extends AbstractNotificationProviderService {
       ? `<p>Track your package:</p><ul>${trackingLinks.map((t) => `<li><a href="${t.url ?? "#"}">${t.tracking_number ?? t.url ?? "Track"}</a></li>`).join("")}</ul>`
       : ""
 
-    const total = order?.total != null ? (order.total / 100).toFixed(2) : "0.00"
+    const total = order?.total != null ? Number(order.total).toFixed(2) : "0.00"
     const currency = (order?.currency_code ?? "usd").toUpperCase()
-    const shipping = order?.shipping_total != null ? (order.shipping_total / 100).toFixed(2) : "0.00"
-    const tax = order?.tax_total != null ? (order.tax_total / 100).toFixed(2) : "0.00"
+    const shipping = order?.shipping_total != null ? Number(order.shipping_total).toFixed(2) : "0.00"
+    const tax = order?.tax_total != null ? Number(order.tax_total).toFixed(2) : "0.00"
 
     return {
       subject: `Your order #${displayId} has shipped`,
@@ -193,10 +193,10 @@ class ResendNotificationService extends AbstractNotificationProviderService {
   private orderCanceledTemplate(data: Record<string, unknown>): { subject: string; html: string } {
     const order = data.order as Record<string, any> | undefined
     const displayId = order?.display_id ?? ""
-    const total = order?.total != null ? (order.total / 100).toFixed(2) : "0.00"
+    const total = order?.total != null ? Number(order.total).toFixed(2) : "0.00"
     const currency = (order?.currency_code ?? "usd").toUpperCase()
-    const shipping = order?.shipping_total != null ? (order.shipping_total / 100).toFixed(2) : "0.00"
-    const tax = order?.tax_total != null ? (order.tax_total / 100).toFixed(2) : "0.00"
+    const shipping = order?.shipping_total != null ? Number(order.shipping_total).toFixed(2) : "0.00"
+    const tax = order?.tax_total != null ? Number(order.tax_total).toFixed(2) : "0.00"
 
     return {
       subject: `Your order #${displayId} has been canceled`,
