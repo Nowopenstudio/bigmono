@@ -2,6 +2,7 @@ import type { SubscriberArgs, SubscriberConfig } from "@medusajs/medusa"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 import type ShippoModuleService from "../modules/shippo/service"
 import { SHIPPO_MODULE } from "../modules/shippo"
+import { resolveOrderPickupLocation } from "../utils/pickup"
 
 type OrderPlacedEvent = {
   id: string
@@ -174,6 +175,27 @@ export default async function shippoOrderLabelSubscriber({
 }: SubscriberArgs<OrderPlacedEvent>) {
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
   const shippoModule: ShippoModuleService = container.resolve(SHIPPO_MODULE)
+
+  // Pickup orders never ship, so they must not get a Shippo shipment/label.
+  // Their metadata is written by the order-pickup-location subscriber instead.
+  try {
+    const pickup = await resolveOrderPickupLocation(container, data.id)
+    if (pickup) {
+      logger.info(
+        `[Shippo] Skipping label creation for pickup order ${data.id} (${pickup.location_name || pickup.location_id})`
+      )
+      return
+    }
+  } catch (err) {
+    // Fail closed: buying a label for a pickup order costs money, a skipped
+    // label for a shipped order can be created manually.
+    logger.error(
+      `[Shippo] Could not determine whether order ${data.id} is a pickup order; skipping label creation. ${
+        err instanceof Error ? err.message : ""
+      }`
+    )
+    return
+  }
 
   if (!shippoModule.isEnabled()) {
     logger.warn("[Shippo] Skipping label creation: SHIPPO_API_KEY is not set")
