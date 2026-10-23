@@ -196,7 +196,29 @@ class SanityModuleService {
         }
         return `${this.studioUrl}/structure/${resolvedType};${id}`
       }
-    
+
+      /**
+       * Reads Settings > Customer Service Email from the published settings
+       * document. The field may hold several addresses separated by commas,
+       * semicolons or whitespace.
+       */
+      async getCustomerServiceEmails(): Promise<string[]> {
+        const value = await this.client
+          .withConfig({ useCdn: false })
+          .fetch<string | null>(
+            `*[_type == "settings" && !(_id in path("drafts.**"))][0].customerService`
+          )
+
+        if (!value) {
+          return []
+        }
+
+        return value
+          .split(/[\s,;]+/)
+          .map((email) => email.replace(/^mailto:/i, "").trim())
+          .filter((email) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))
+      }
+
   }
 
 

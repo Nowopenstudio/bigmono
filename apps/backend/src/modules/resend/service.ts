@@ -72,6 +72,8 @@ class ResendNotificationService extends AbstractNotificationProviderService {
       case "order.placed":
       case "order-placed":
         return this.orderPlacedTemplate(data)
+      case "order-placed-admin":
+        return this.orderPlacedAdminTemplate(data)
       case "order.shipment_created":
       case "order-shipped":
         return this.orderShippedTemplate(data)
@@ -145,6 +147,87 @@ class ResendNotificationService extends AbstractNotificationProviderService {
             </tr>
           </tfoot>
         </table>
+      `),
+    }
+  }
+
+  private escape(value: unknown): string {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+  }
+
+  private orderPlacedAdminTemplate(data: Record<string, unknown>): { subject: string; html: string } {
+    const order = data.order as Record<string, any> | undefined
+    const pickup = data.pickup as Record<string, any> | null | undefined
+    const displayId = order?.display_id ?? ""
+    const items: Array<Record<string, any>> = (order?.items ?? []).map((item: Record<string, any>) => ({
+      ...item,
+      title: this.escape(item.title),
+    }))
+    const total = order?.total != null ? Number(order.total).toFixed(2) : "0.00"
+    const currency = (order?.currency_code ?? "usd").toUpperCase()
+    const shipping = order?.shipping_total != null ? Number(order.shipping_total).toFixed(2) : "0.00"
+    const tax = order?.tax_total != null ? Number(order.tax_total).toFixed(2) : "0.00"
+    const address = order?.shipping_address as Record<string, any> | undefined
+    const customerName = [address?.first_name, address?.last_name].filter(Boolean).join(" ")
+    const orderUrl = `${this.adminUrl}/orders/${order?.id ?? ""}`
+
+    const addressLines = (a?: Record<string, any> | null) =>
+      [
+        a?.company,
+        [a?.address_1, a?.address_2].filter(Boolean).join(" "),
+        [a?.city, [a?.province, a?.postal_code].filter(Boolean).join(" ")].filter(Boolean).join(", "),
+        a?.country_code?.toUpperCase(),
+      ]
+        .filter(Boolean)
+        .map((line) => this.escape(line))
+        .join("<br/>")
+
+    const deliveryHtml = pickup
+      ? `<p style="margin:0"><strong>Store pickup</strong> at ${this.escape(pickup.location_name || pickup.location_id || "unknown location")}</p>
+         <p style="color:#555;margin:4px 0 0">${addressLines(pickup.address)}</p>`
+      : `<p style="margin:0"><strong>${this.escape(order?.shipping_methods?.[0]?.name || "Shipping")}</strong></p>
+         <p style="color:#555;margin:4px 0 0">${this.escape(customerName)}${customerName ? "<br/>" : ""}${addressLines(address)}</p>`
+
+    return {
+      subject: pickup
+        ? `New order #${displayId} (pickup at ${pickup.location_name || "store"})`
+        : `New order #${displayId}`,
+      html: this.wrap(`
+        <h1 style="font-size:24px;margin-bottom:8px">New order #${displayId}</h1>
+        <p style="color:#555">
+          ${this.escape(customerName || "A customer")} (${this.escape(order?.email ?? "no email")})
+          ${address?.phone ? ` &middot; ${this.escape(address.phone)}` : ""}
+        </p>
+        <div style="margin-top:16px;padding:12px;background:#f5f5f5">${deliveryHtml}</div>
+        <table style="width:100%;border-collapse:collapse;margin-top:24px">
+          <thead>
+            <tr style="background:#f5f5f5">
+              <th style="padding:8px;text-align:left">Item</th>
+              <th style="padding:8px;text-align:center">Qty</th>
+              <th style="padding:8px;text-align:right">Price</th>
+            </tr>
+          </thead>
+          <tbody>${this.orderItemRows(items, currency)}</tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2" style="padding:8px;text-align:right">Shipping</td>
+              <td style="padding:8px;text-align:right">${currency} ${shipping}</td>
+            </tr>
+            <tr>
+              <td colspan="2" style="padding:8px;text-align:right">Tax</td>
+              <td style="padding:8px;text-align:right">${currency} ${tax}</td>
+            </tr>
+            <tr>
+              <td colspan="2" style="padding:8px;text-align:right;font-weight:bold">Total</td>
+              <td style="padding:8px;text-align:right;font-weight:bold">${currency} ${total}</td>
+            </tr>
+          </tfoot>
+        </table>
+        <p style="margin-top:24px"><a href="${orderUrl}" style="background:#222;color:#fff;padding:10px 16px;text-decoration:none">View order in admin</a></p>
       `),
     }
   }
